@@ -15,7 +15,8 @@ import Login from './pages/auth/Login';
 import { useDispatch } from 'react-redux'
 import axios from 'axios';
 import { BASE_URL } from './constants/env';
-import { setProjects } from './store/data.reducer';
+import { getAllProjects, getAllUsers, setProjects } from './store/data.reducer';
+import { useAppDispatch } from './hooks/store';
 
 
 moment.locale('fr', {
@@ -75,19 +76,20 @@ moment.locale('fr', {
 });
 
 function App() {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
-  function getAllProjects() {
-    axios.get(`${BASE_URL}/api/projets`)
-        .then(res => {
-            dispatch(setProjects(res.data['hydra:member']))
-            // dispatch(setProjects(res.data))
-        })
-        .catch(err => console.log(err))
-  }
+  // function getAllProjects() {
+  //   axios.get(`${BASE_URL}/api/projets`)
+  //       .then(res => {
+  //           dispatch(setProjects(res.data['hydra:member']))
+  //           // dispatch(setProjects(res.data))
+  //       })
+  //       .catch(err => console.log(err))
+  // }
 
   useEffect(() => {
-    getAllProjects()
+    dispatch(getAllProjects())
+    dispatch(getAllUsers())
   }, [])
 
   return (

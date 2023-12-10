@@ -4,7 +4,7 @@ import Sidebar from '../components/Sidebar';
 import '../CSS/NewAdmin.scss';
 import noImg from '../image/images.png';
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
