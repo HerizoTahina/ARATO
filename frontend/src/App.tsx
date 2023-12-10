@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import moment from 'moment';
@@ -12,6 +12,10 @@ import User from './pages/admin/pages/User';
 import Actualite from './pages/admin/pages/Actualite';
 import Register from './pages/auth/Register';
 import Login from './pages/auth/Login';
+import { useDispatch } from 'react-redux'
+import axios from 'axios';
+import { BASE_URL } from './constants/env';
+import { setProjects } from './store/data.reducer';
 
 
 moment.locale('fr', {
@@ -71,12 +75,27 @@ moment.locale('fr', {
 });
 
 function App() {
+  const dispatch = useDispatch()
+
+  function getAllProjects() {
+    axios.get(`${BASE_URL}/api/projets`)
+        .then(res => {
+            dispatch(setProjects(res.data['hydra:member']))
+            // dispatch(setProjects(res.data))
+        })
+        .catch(err => console.log(err))
+  }
+
+  useEffect(() => {
+    getAllProjects()
+  }, [])
+
   return (
     <React.Fragment>
       <Router>
         <Routes>
           <Route path='/' element={<HomeClient />} />
-          <Route path='/details' element={<Details />} />
+          <Route path='/details-project/:projectId' element={<Details />} />
 
           {/*Admin*/}
 

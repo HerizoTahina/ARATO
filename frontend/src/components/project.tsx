@@ -1,47 +1,47 @@
 import React from "react";
 import { ReactSVG } from "react-svg";
+import { IProject } from "../types/IProject";
+import { BASE_URL } from "../constants/env";
+import { Link } from "react-router-dom";
 
-function Project() {
-  // const {titreActvite,dateCreation,descActivite,dureeProjet,statutProjet} = project
+function Project({ project }: { project: IProject }) {
+  const { id, titreActvite, filePath, dateCreation, descActivite, dureeProjet, statutProjet } = project
 
   return (
-    <article className="project">
-      <div className="project__left">
-        <div className="date">
-          <span className="date__item">
-            <ReactSVG src="/svg/date.svg" />
-            &nbsp; 01/05/2023
-          </span>
-          <span className="date__item">
-            <ReactSVG src="/svg/time.svg" />
-            &nbsp; Durée : 15:20
-          </span>
-        </div>
-
-        <h2 className="title">
-          Projet Sécurité Alimentaire"Household Food Security Initiatives"
-        </h2>
-        <p className="description">
-          Pour une meilleure condition de vie de la population riveraine du
-          COFAV La mise en place de la nouvelle aire protégée Ambositra.
-        </p>
-        <div className="status">
-          <div className="status__icon">
-            <ReactSVG src="/svg/play.svg" />
+    <Link to={`/details-project/${id}`}>
+      <article className="project">
+        <div className="project__left">
+          <div className="date">
+            <span className="date__item">
+              <ReactSVG src="/svg/date.svg" />
+              &nbsp; {dateCreation.split('T')[0]}
+            </span>
+            <span className="date__item">
+              <ReactSVG src="/svg/time.svg" />
+              &nbsp; Durée : {dureeProjet}
+            </span>
           </div>
 
-          <p className="status__text">Alimentaire</p>
-        </div>
-      </div>
+          <h2 className="title">{titreActvite}</h2>
+          <p className="description">{descActivite}</p>
+          <div className="status">
+            <div className="status__icon">
+              <ReactSVG src="/svg/play.svg" />
+            </div>
 
-      <div className="project__right">
-        <div className="round-1">
-          <div className="round-2">
-            <img src="/project.jpeg" alt="project" />
+            <p className="status__text">{statutProjet}</p>
           </div>
         </div>
-      </div>
-    </article>
+
+        <div className="project__right">
+          <div className="round-1">
+            <div className="round-2">
+              <img src={`${BASE_URL}/media/${filePath}`} alt="project" />
+            </div>
+          </div>
+        </div>
+      </article>
+    </Link>
   );
 }
 

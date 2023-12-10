@@ -9,9 +9,13 @@ import Footer from "../../../components/footer";
 import Project from "../../../components/project";
 import NavBar from "../../../components/nav-bar";
 import Banner from "./banner";
+import { useSelector } from "react-redux";
+import { useAppSelector } from "../../../hooks/store";
+import { IProject } from "../../../types/IProject";
 
 
 function HomeClient() {
+  const { projects  } = useAppSelector(state => state.data)
   const [loading, setLoading] = useState(true);
   const [listsBlogs, setListsBlogs] = useState([]);
   const [blogSelected, setBlogSelected] = useState(null);
@@ -37,18 +41,20 @@ function HomeClient() {
     getAllBlogs();
   }, []);
 
+  console.log(projects)
+
   return (
     <>
       <header>
         <NavBar />
-        <Banner/>
+        <Banner />
       </header>
       <div className="home-client">
         <section className="section">
           <h1 className="section__title">Nos projets</h1>
           <div className="section__lists projects">
-            {[...new Array(4)].map((project, index) => (
-              <Project key={index} />
+            {projects.map((project, index) => (
+              <Project key={index} project={project}/>
             ))}
           </div>
         </section>
