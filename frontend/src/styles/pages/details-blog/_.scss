@@ -1,0 +1,41 @@
+.details-blog {
+    display: grid;
+    grid-template-columns: 1fr 30%;
+    column-gap: 100px;
+    max-width: $max-width;
+    margin: auto;
+    padding-top: 20px;
+
+    .detail {
+        width: 100%;
+
+        &__content {
+            .image {
+                width: 100%;
+
+                img {
+                    width: 100%;
+                    max-height: 300px;
+                    object-fit: cover;
+                    border-radius: $r-base;
+                }
+            }
+
+            .actions {
+                margin-top: 10px;
+                @include flex;
+                column-gap: 30px;
+                text-align: center;
+                font-size: $f-min;
+    
+                &__item {
+                    cursor: pointer;
+                }
+    
+                &__icon {
+                    font-size: $f-xl;
+                }
+            }
+        }
+    }
+}

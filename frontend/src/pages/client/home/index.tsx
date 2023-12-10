@@ -15,33 +15,11 @@ import { IProject } from "../../../types/IProject";
 
 
 function HomeClient() {
-  const { projects  } = useAppSelector(state => state.data)
-  const [loading, setLoading] = useState(true);
+  const { projects, blogs } = useAppSelector(state => state.data)
+  const [loading, setLoading] = useState(false);
   const [listsBlogs, setListsBlogs] = useState([]);
-  const [blogSelected, setBlogSelected] = useState(null);
 
-  function getAllBlogs() {
-    axios
-      .get(`${BASE_URL}/api/publication_evenements`)
-      .then(async (response) => {
-        const blogs = response.data["hydra:member"];
-        setListsBlogs(blogs);
-
-        if (blogs.length > 0) {
-          const lastBlogs = blogs[blogs.length - 1];
-          setBlogSelected(lastBlogs);
-        }
-        await wait(500);
-        setLoading(false);
-      })
-      .catch((err) => console.log(err));
-  }
-
-  useEffect(() => {
-    getAllBlogs();
-  }, []);
-
-  console.log(projects)
+  console.log(blogs)
 
   return (
     <>
@@ -54,7 +32,7 @@ function HomeClient() {
           <h1 className="section__title">Nos projets</h1>
           <div className="section__lists projects">
             {projects.map((project, index) => (
-              <Project key={index} project={project}/>
+              <Project key={index} project={project} />
             ))}
           </div>
         </section>
@@ -91,7 +69,7 @@ function HomeClient() {
               ? [...new Array(3)].map((blog, index) => (
                 <BlogLoading key={index} isMin blog={blog} />
               ))
-              : listsBlogs
+              : blogs
                 .slice(0, 3)
                 .map((blog, index) => <Blog key={index} blog={blog} />)}
           </div>

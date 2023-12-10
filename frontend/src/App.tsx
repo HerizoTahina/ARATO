@@ -5,7 +5,7 @@ import moment from 'moment';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomeClient from './pages/client/home';
 import './styles/main.scss'
-import Details from './pages/client/details';
+import Details from './pages/client/details-project';
 import Home from './pages/admin/pages/Home';
 import NewAdmin from './pages/admin/pages/NewAdmin';
 import User from './pages/admin/pages/User';
@@ -15,8 +15,9 @@ import Login from './pages/auth/Login';
 import { useDispatch } from 'react-redux'
 import axios from 'axios';
 import { BASE_URL } from './constants/env';
-import { getAllProjects, getAllUsers, setProjects } from './store/data.reducer';
+import { getAllBlogs, getAllProjects, getAllUsers, setProjects } from './store/data.reducer';
 import { useAppDispatch } from './hooks/store';
+import DetailsBlog from './pages/client/details-blog';
 
 
 moment.locale('fr', {
@@ -90,6 +91,7 @@ function App() {
   useEffect(() => {
     dispatch(getAllProjects())
     dispatch(getAllUsers())
+    dispatch(getAllBlogs())
   }, [])
 
   return (
@@ -98,14 +100,14 @@ function App() {
         <Routes>
           <Route path='/' element={<HomeClient />} />
           <Route path='/details-project/:projectId' element={<Details />} />
-
+          <Route path='/details-blog/:blogId' element={<DetailsBlog />} />
           {/*Admin*/}
 
           <Route path='/home' element={<Home />} />
           <Route path='/addNewAdmin' element={<NewAdmin />} />
 
           <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<Login   />} />
+          <Route path='/login' element={<Login />} />
           <Route path='/users' element={<User />} />
           <Route path='/actualites' element={<Actualite />} />
         </Routes>
