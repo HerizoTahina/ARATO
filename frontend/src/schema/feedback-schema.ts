@@ -8,6 +8,6 @@ const feedbackFormSchema = Yup.object().shape({
     pointDeVue: Yup.string().required("Point de vue obligatoire"),
 });
 
-type feedbackForm = Yup.InferType<typeof feedbackFormSchema>;
-export type { feedbackForm };
+type IFeedbackForm = Yup.InferType<typeof feedbackFormSchema>;
+export type { IFeedbackForm };
 export {feedbackFormSchema};

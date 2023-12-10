@@ -1,7 +1,8 @@
 type IUser = {
     id: number,
     nom: string,
-    contentUrl: string
+    contentUrl: string,
+    email? : string
 }
 
 export type{

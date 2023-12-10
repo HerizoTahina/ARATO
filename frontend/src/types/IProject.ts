@@ -8,7 +8,7 @@ type IProject = {
   statutProjet: string;
   dureeProjet: string;
   utilisateur: IUser;
-  // feedback: [],
+  feedback: Array<string>;
   // partenaireProjets: [],
   filePath: string;
 };
