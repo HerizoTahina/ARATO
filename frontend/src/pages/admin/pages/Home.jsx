@@ -5,11 +5,12 @@ import Navbar from '../components/Navbar';
 import Widgets from '../components/Widgets';
 import Charts from '../components/Charts';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
     // const {getToken,http} = AuthUser();
     const [token,setToken] = useState(null);
-
+    const theme = useSelector(state => state.theme);
 
     
     // if(!getToken()){
@@ -20,7 +21,7 @@ const Home = () => {
 
     
     return (
-        <div className='home'>
+        <div className={theme ?'home': 'home dark'}>
             <Sidebar/>
             <div className="homeContainer">
                 <Navbar/>

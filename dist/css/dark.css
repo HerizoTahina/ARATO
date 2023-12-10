@@ -1,0 +1,27 @@
+.dark {
+  border-color: gray;
+  background-color: #222;
+  color: rgb(156, 156, 156);
+}
+.dark .chartGrid {
+  stroke: rgb(228, 225, 225);
+}
+.dark .tableGrid {
+  background-color: #111;
+  color: gray;
+}
+.dark .navbar {
+  border-color: gray;
+}
+.dark .sidebar .top .logo {
+  color: #999;
+}
+.dark .sidebar hr {
+  border-color: #333;
+}
+.dark .sidebar ul li:hover {
+  background-color: #333;
+}
+.dark .sidebar ul li .Icon {
+  color: #999;
+}/*# sourceMappingURL=dark.css.map */

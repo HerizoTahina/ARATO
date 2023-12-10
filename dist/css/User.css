@@ -1,0 +1,81 @@
+.home {
+  display: flex;
+}
+.home .homeContainer {
+  position: relative;
+  flex: 6;
+}
+.home .homeContainer .listeUsers {
+  position: absolute;
+  height: auto;
+  top: 50%;
+  left: 20%;
+  transform: translateY(-50%);
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+}
+.home .homeContainer .listeUsers h1 {
+  font-size: 25px;
+  display: flex;
+  margin-top: 5px;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+.home .homeContainer .listeUsers .add-btn {
+  background: rgb(5, 177, 245);
+  color: white;
+  border: none;
+  width: 100px;
+  height: 40px;
+  border-radius: 15px;
+}
+.home .homeContainer .listeUsers .add-btn .Icons {
+  font-style: 16px;
+  margin-right: 5px;
+}
+.home .homeContainer .listeUsers .btn_search {
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+.home .homeContainer .listeUsers .btn_search .search {
+  border: 0.5px solid lightgray;
+}
+.home .homeContainer .listeUsers .btn_search .search input {
+  border: none;
+  outline: none;
+  background: transparent;
+}
+.home .homeContainer .listeUsers .btn_search .search input::-moz-placeholder {
+  font-size: 12px;
+}
+.home .homeContainer .listeUsers .btn_search .search input:-ms-input-placeholder {
+  font-size: 12px;
+}
+.home .homeContainer .listeUsers .btn_search .search input::placeholder {
+  font-size: 12px;
+}
+.home .homeContainer .profilPict {
+  border-radius: 50%;
+}
+.home .homeContainer .cellAction {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.home .homeContainer .cellAction .viewButton {
+  padding: 2px 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: darkblue;
+  border: 1px dotted rgba(0, 0, 139, 0.596);
+}
+.home .homeContainer .cellAction .deleteButton {
+  padding: 2px 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: crimson;
+  border: 1px dotted rgba(220, 20, 60, 0.6);
+}/*# sourceMappingURL=User.css.map */

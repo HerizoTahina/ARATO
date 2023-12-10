@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { authReducer } from "./auth.reducer";
 import { profileReducer } from "./profile.reducer";
 import { publicationReducer } from "./publication.reducer";
+import { themeReducer } from "./theme.reducer";
 import { dataReducer } from "./data.reducer";
 
 export const allStore = configureStore({
@@ -9,6 +10,7 @@ export const allStore = configureStore({
         users: authReducer.reducer,
         profile:profileReducer.reducer,
         publication:publicationReducer.reducer,
+        theme:themeReducer.reducer,
         data : dataReducer.reducer
     }
 });

@@ -21,6 +21,7 @@ import { deleteUser } from '../../../store/auth.reducer';
 
 const User = () => {
     const adminList = useSelector(state => state.users);
+    const theme = useSelector(state => state.theme);
     const dispatch = useDispatch();
     const admin = adminList.admin;
     console.log(admin);
@@ -32,7 +33,7 @@ const User = () => {
 
     
     return (
-        <div className='home'>
+        <div className={theme ? 'home' : 'home dark'}>
             <Sidebar/>
             <div className="homeContainer">
                 <Navbar/>

@@ -1,0 +1,39 @@
+.dark{
+    border-color: gray;
+     background-color: #222;
+     color: rgb(156, 156, 156);
+     
+     .chartGrid{
+        stroke: rgb(228, 225, 225);
+    }
+
+    .tableGrid{
+        background-color: #111;
+        color: gray;
+    }
+    .navbar{
+        border-color: gray;
+    }
+    .sidebar{
+        .top{
+            .logo{
+                color: #999;
+            }
+        }
+        hr{
+            border-color: #333;
+        }
+
+        ul{
+            li{
+              &:hover{
+                background-color: #333;
+              }  
+              .Icon{
+                color: #999;
+              }
+            }
+        }
+    }
+
+}
