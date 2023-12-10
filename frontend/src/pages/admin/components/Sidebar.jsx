@@ -14,13 +14,14 @@ import { Link } from 'react-router-dom';
 import AuthUser from '../../../api/AuthUser';
 import { useDispatch, useSelector } from 'react-redux';
 import { togleTheme } from '../../../store/theme.reducer';
-
+import '../style/dark.scss';
 
 
 const Sidebar =   () => {
     const theme = useSelector(state => state.theme);
     const {http,logout} = AuthUser();
     const dispatch = useDispatch();
+    
     const handleLogout = async () =>{
         const res = await http.get('/logout');
 
@@ -35,7 +36,7 @@ const Sidebar =   () => {
    
 
     return (
-        <div className={theme ? 'sidebar': 'sidebar dark'}>
+        <div className={theme.isLight ? 'sidebar': 'sidebar dark'}>
             <div className='top'>
                 <span className='logo'>Backoffice</span>
             </div>
@@ -46,14 +47,14 @@ const Sidebar =   () => {
                     <Link to='/home'>
                         <li>
                             <DashboardIcon className='Icon'/>
-                            <span>Dashboard</span>
+                            <span>Tableau de bord</span>
                         </li>
                     </Link>
                     <p className="title">LISTS</p>
                     <Link to='/users'>
                         <li>
                             <PersonOutlineOutlinedIcon className='Icon'/>
-                            <span>Users</span>
+                            <span>Utilisateur</span>
                         </li>
                     </Link>
                     <Link to='/actualites'>
@@ -86,8 +87,14 @@ const Sidebar =   () => {
                 </ul>
             </div>
             <div className='bottom'>
-                    <div className="colorOption" onClick={e => dispatch(togleTheme())}></div>
-                    <div className="colorOption" onClick={e => dispatch(togleTheme())}></div>
+                    <div className="colorOption" onClick={e => {
+                        dispatch(togleTheme(true));
+                        localStorage.setItem("theme","light")
+                        }}></div>
+                    <div className="colorOption" onClick={e => {
+                        dispatch(togleTheme(false));
+                        localStorage.setItem("theme","dark")
+                    }}></div>
             </div>
         </div>
     );

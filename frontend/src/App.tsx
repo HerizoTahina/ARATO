@@ -4,6 +4,7 @@ import './App.css';
 import moment from 'moment';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomeClient from './pages/client/home';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/main.scss'
 import Details from './pages/client/details';
 import Home from './pages/admin/pages/Home';
@@ -17,6 +18,9 @@ import axios from 'axios';
 import { BASE_URL } from './constants/env';
 import { getAllProjects, getAllUsers, setProjects } from './store/data.reducer';
 import { useAppDispatch } from './hooks/store';
+import { togleTheme } from './store/theme.reducer';
+import NewActivite from './pages/admin/pages/NewActivite';
+import Gouvernance from './pages/client/pages/Gouvernance';
 
 
 moment.locale('fr', {
@@ -78,18 +82,16 @@ moment.locale('fr', {
 function App() {
   const dispatch = useAppDispatch()
 
-  // function getAllProjects() {
-  //   axios.get(`${BASE_URL}/api/projets`)
-  //       .then(res => {
-  //           dispatch(setProjects(res.data['hydra:member']))
-  //           // dispatch(setProjects(res.data))
-  //       })
-  //       .catch(err => console.log(err))
-  // }
-
+const getTheme = () => {
+  const valueTheme = localStorage.getItem("theme")
+  if(valueTheme === "dark"){
+   dispatch(togleTheme(false))
+  }else {dispatch(togleTheme(true))}
+}
   useEffect(() => {
     dispatch(getAllProjects())
     dispatch(getAllUsers())
+    getTheme()
   }, [])
 
   return (
@@ -98,13 +100,13 @@ function App() {
         <Routes>
           <Route path='/' element={<HomeClient />} />
           <Route path='/details-project/:projectId' element={<Details />} />
-
+          <Route path='/ressource' element={<Gouvernance/>}/>
           {/*Admin*/}
 
           <Route path='/home' element={<Home />} />
           <Route path='/addNewAdmin' element={<NewAdmin />} />
-
-          <Route path='/register' element={<Register />} />
+          <Route path='/newActivite' element={<NewActivite/>}/>
+          <Route path='/register' element={<Register/>} />
           <Route path='/login' element={<Login   />} />
           <Route path='/users' element={<User />} />
           <Route path='/actualites' element={<Actualite />} />

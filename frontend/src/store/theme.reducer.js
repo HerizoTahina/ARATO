@@ -5,7 +5,7 @@ export const themeReducer = createSlice({
     initialState: {isLight:false},
     reducers: {
         togleTheme: (state,action) => {
-            state.isLight = !state.isLight
+            state.isLight = action.payload
         }
     },
 });

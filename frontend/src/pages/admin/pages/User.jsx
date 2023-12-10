@@ -24,7 +24,7 @@ const User = () => {
     const theme = useSelector(state => state.theme);
     const dispatch = useDispatch();
     const admin = adminList.admin;
-    console.log(admin);
+  
     const [showSingle,setshowSingle] = useState('');
     
     const handleDelete = (id) => {
@@ -33,7 +33,7 @@ const User = () => {
 
     
     return (
-        <div className={theme ? 'home' : 'home dark'}>
+        <div className={theme.isLight ? 'home' : 'home dark'}>
             <Sidebar/>
             <div className="homeContainer">
                 <Navbar/>

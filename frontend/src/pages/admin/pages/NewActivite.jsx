@@ -25,7 +25,7 @@ const NewActivite = () => {
    // formData.append('')
 
     return (
-        <div className={theme ? 'new':'new dark'}>
+        <div className={theme.isLight ? 'new':'new dark'}>
             <Sidebar/>
             <div className="newContainer">
                 <Navbar/>
