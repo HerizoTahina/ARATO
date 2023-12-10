@@ -9,6 +9,12 @@
     padding: 25px;
     position: relative;
     overflow-x: hidden;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.01);
+    }
 
     &__left {
         width: 75%;

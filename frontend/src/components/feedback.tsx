@@ -1,28 +1,51 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { ReactSVG } from 'react-svg'
+import { IFeedback } from '../types/IFeedback'
+import axios from 'axios'
+import { BASE_URL } from '../constants/env'
 
-type Props = {}
+type Props = {
+    url: string
+}
 
-function Feedback({ }: Props) {
+function Feedback({ url }: Props) {
+    const [content, setContent] = useState<IFeedback | null>(null)
+
+    function getContent() {
+        axios.get(`${BASE_URL}${url}`)
+            .then(res => {
+                setContent(res.data)
+            })
+            .catch(err => console.log(err))
+    }
+
+    useEffect(() => {
+        getContent()
+    }, [url])
+    
+
+
     return (
-        <article className='feedback'>
-            <div className='feedback__icon'>
-                <ReactSVG src='/svg/quotes-ltr.svg' />
-            </div>
+        <>
+            {content ? <article className='feedback'>
+                <div className='feedback__icon'>
+                    <ReactSVG src='/svg/quotes-ltr.svg' />
+                </div>
 
-            <div className='feedback__content'>
-                <p className='description'>
-                    Lorem ipsum dolor sit amet consectetur. Et amet magna cursus leo amet justo. At rhoncus nec sem placerat facilisis tortor etiam morbi accumsan. Imperdiet lobortis tortor morbi nisl tellus. Sapien.
-                </p>
-                <div className='user'>
-                    <img src='/images/user-1.png' alt='user' className='user__image' />
-                    <div className='user__about'>
-                        <p className='name'>ROBUSTE Manohisafidy</p>
-                        <p className='role'>Utilisateur</p>
+                <div className='feedback__content'>
+                    <p className='description'>
+                        {content.appreciation}
+                    </p>
+                    <div className='user'>
+                        <img src={`${BASE_URL}${content.utilisateur.contentUrl}`} alt='user' className='user__image' />
+                        <div className='user__about'>
+                            <p className='name'>{content.utilisateur.nom}</p>
+                            <p className='role'>{content.pointDeVue}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </article>
+            </article> : null}
+        </>
     )
 }
 

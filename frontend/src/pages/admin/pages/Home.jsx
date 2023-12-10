@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
-import Sidebar from '../components/Sidebar';
-import '../CSS/Home.scss'
-import Navbar from '../components/Navbar';
-import Widgets from '../components/Widgets';
-import Charts from '../components/Charts';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from "react";
+import Sidebar from "../components/Sidebar";
+import "../CSS/Home.scss";
+import Navbar from "../components/Navbar";
+import Widgets from "../components/Widgets";
+import Charts from "../components/Charts";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import useAuthenticated from "../../../hooks/useAuthenticated";
 
 const Home = () => {
-    // const {getToken,http} = AuthUser();
     const [token,setToken] = useState(null);
     const theme = useSelector(state => state.theme);
 console.log(theme);
@@ -36,7 +36,5 @@ console.log(theme);
                 </div>
             </div> 
         </div>
-    ); 
-};
-
+    )}
 export default Home;

@@ -33,7 +33,7 @@ const User = () => {
 
     
     return (
-        <div className={theme ? 'home' : 'home dark'}>
+        <div className={theme.isLight ? 'home' : 'home dark'}>
             <Sidebar/>
             <div className="homeContainer">
                 <Navbar/>
