@@ -53,7 +53,7 @@ const NewAdmin = () => {
         // setPassword(''); 
     };
     return (
-        <div className={theme ? 'new dark': 'new'}>
+        <div className={theme.isLight ? 'new dark': 'new'}>
             <Sidebar/>
             <div className="newContainer">
                 <Navbar/>

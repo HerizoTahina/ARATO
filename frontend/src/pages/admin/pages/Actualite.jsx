@@ -51,7 +51,7 @@ const Actualite = () => {
             <div className="listeUsers">
                 <h1>Liste des actualités</h1>
                 <div className="btn_search">
-                    <Link to='/addNewAdmin'>
+                    <Link to='/newActivite'>
                       <button className='add-btn'>
                           <AddCircleOutlineOutlinedIcon className='Icons'/>
                           Ajouter

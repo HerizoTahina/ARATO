@@ -4,6 +4,7 @@ import './App.css';
 import moment from 'moment';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomeClient from './pages/client/home';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/main.scss'
 import Details from './pages/client/details-project';
 import Home from './pages/admin/pages/Home';
@@ -18,6 +19,10 @@ import { BASE_URL } from './constants/env';
 import { getAllBlogs, getAllProjects, getAllUsers, setProjects } from './store/data.reducer';
 import { useAppDispatch } from './hooks/store';
 import DetailsBlog from './pages/client/details-blog';
+import { togleTheme } from './store/theme.reducer';
+import Gouvernance from './pages/client/pages/Gouvernance';
+import NewActivite from './pages/admin/pages/NewActivite';
+
 
 
 moment.locale('fr', {
@@ -79,19 +84,17 @@ moment.locale('fr', {
 function App() {
   const dispatch = useAppDispatch()
 
-  // function getAllProjects() {
-  //   axios.get(`${BASE_URL}/api/projets`)
-  //       .then(res => {
-  //           dispatch(setProjects(res.data['hydra:member']))
-  //           // dispatch(setProjects(res.data))
-  //       })
-  //       .catch(err => console.log(err))
-  // }
-
+const getTheme = () => {
+  const valueTheme = localStorage.getItem("theme")
+  if(valueTheme === "dark"){
+   dispatch(togleTheme(false))
+  }else {dispatch(togleTheme(true))}
+}
   useEffect(() => {
     dispatch(getAllProjects())
     dispatch(getAllUsers())
     dispatch(getAllBlogs())
+    getTheme()
   }, [])
 
   return (
@@ -101,13 +104,14 @@ function App() {
           <Route path='/' element={<HomeClient />} />
           <Route path='/details-project/:projectId' element={<Details />} />
           <Route path='/details-blog/:blogId' element={<DetailsBlog />} />
+          <Route path='/ressource' element={<Gouvernance/>}/>
+          <Route path='/newActivite' element={<NewActivite/>}/> 
           {/*Admin*/}
 
           <Route path='/home' element={<Home />} />
           <Route path='/addNewAdmin' element={<NewAdmin />} />
-
-          <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register/>} />
+          <Route path='/login' element={<Login   />} />
           <Route path='/users' element={<User />} />
           <Route path='/actualites' element={<Actualite />} />
         </Routes>

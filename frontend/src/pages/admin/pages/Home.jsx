@@ -9,28 +9,32 @@ import { useSelector } from "react-redux";
 import useAuthenticated from "../../../hooks/useAuthenticated";
 
 const Home = () => {
-  const { token, currentUser } = useAuthenticated();
-  const theme = useSelector((state) => state.theme);
+    const [token,setToken] = useState(null);
+    const theme = useSelector(state => state.theme);
+console.log(theme);
+    
+    // if(!getToken()){
+    //     return <Accueil/>;
+    // }
+    
+    
 
-  console.log(currentUser);
-
-  return (
-    <div className={theme ? "home" : "home dark"}>
-      <Sidebar />
-      <div className="homeContainer">
-        <Navbar />
-        <div className="widgets">
-          <Widgets type="user" />
-          <Widgets type="actualites" />
-          <Widgets type="projets" />
-          <Widgets type="axes strategiques" />
+    
+    return (
+        <div className={theme.isLight ?'home': 'home dark'}>
+            <Sidebar/>
+            <div className="homeContainer">
+                <Navbar/>
+                <div className="widgets">
+                    <Widgets type='user'/>
+                    <Widgets type='actualites'/>
+                    <Widgets type='projets'/>
+                    <Widgets type='axes strategiques'/>      
+                </div>
+                <div className="charts">
+                    <Charts/>
+                </div>
+            </div> 
         </div>
-        <div className="charts">
-          <Charts />
-        </div>
-      </div>
-    </div>
-  );
-};
-
+    )}
 export default Home;
