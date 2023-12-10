@@ -1,0 +1,30 @@
+.feedback-form {
+
+    &__title,
+    &__desc {
+        font-size: $f-base;
+        color: $primaryColor;
+        margin-bottom: 10px;
+    }
+
+    form {
+        background: rgba(27, 105, 25, 0.12);
+        padding: 50px;
+        border-radius: $r-base;
+
+        .input-inline {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 50px;
+        }
+
+        .send-feedback {
+            background-color: $primaryColor;
+            font-family: 'Jost';
+            color: white;
+            font-size: $f-md;
+            padding: 5px 20px;
+            border-radius: 3px;
+        }
+    }
+}

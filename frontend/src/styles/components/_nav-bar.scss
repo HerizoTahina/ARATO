@@ -29,7 +29,15 @@
         }
 
         .right {
+            @include flex(flex-end , center);
+
             .btn-auth {
+                text-transform: uppercase;
+                font-size: $f-base;
+                color: white;
+            }
+
+            .btn-pub {
                 background-color: white;
                 padding: 10px;
                 color: $primaryColor;
