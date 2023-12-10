@@ -11,7 +11,7 @@ const Home = () => {
     // const {getToken,http} = AuthUser();
     const [token,setToken] = useState(null);
     const theme = useSelector(state => state.theme);
-
+console.log(theme);
     
     // if(!getToken()){
     //     return <Accueil/>;
@@ -21,7 +21,7 @@ const Home = () => {
 
     
     return (
-        <div className={theme ?'home': 'home dark'}>
+        <div className={theme.isLight ?'home': 'home dark'}>
             <Sidebar/>
             <div className="homeContainer">
                 <Navbar/>

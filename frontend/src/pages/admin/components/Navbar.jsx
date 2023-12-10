@@ -17,7 +17,7 @@ const Navbar = () => {
         // http.post("/profile").then(res => setUser(res.data.data)); 
     },[]);
       
-console.log(user.picture);
+
 
 
     return (

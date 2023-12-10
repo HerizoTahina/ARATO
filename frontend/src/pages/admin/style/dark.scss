@@ -14,25 +14,29 @@
     .navbar{
         border-color: gray;
     }
-    .sidebar{
-        .top{
-            .logo{
-                color: #999;
-            }
+    
+    .top{
+        .logo{
+            color: #999;
         }
+    }
+    .sidebar{
+        
         hr{
             border-color: #333;
         }
-
-        ul{
-            li{
-              &:hover{
-                background-color: #333;
-              }  
-              .Icon{
-                color: #999;
-              }
-            }
+        .center{
+            ul{
+                li{
+                  &:hover{
+                    background-color: #333;
+                  }  
+                .Icon{
+                    color: #999;
+                  }
+                }
+        }
+        
         }
     }
 
