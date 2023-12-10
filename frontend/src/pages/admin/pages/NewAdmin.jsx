@@ -12,7 +12,7 @@ import { register } from '../../../store/auth.reducer';
 
 const NewAdmin = () => {
 
-   
+    const theme = useSelector(state => state.theme);
     const [name,setName] = useState('');
     const [contactUser,setcontactUser] = useState('');
     const [email,setEmail] = useState('');
@@ -50,12 +50,10 @@ const NewAdmin = () => {
         // setNom('');
         // setContact('');
         // setMail('');
-        // setPassword('');
-       
+        // setPassword(''); 
     };
-
     return (
-        <div className='new'>
+        <div className={theme ? 'new dark': 'new'}>
             <Sidebar/>
             <div className="newContainer">
                 <Navbar/>

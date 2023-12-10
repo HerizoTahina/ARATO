@@ -5,11 +5,11 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import { Link } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
-
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const Actualite = () => {
- 
+    const theme = useSelector(state => state.theme);
     const columns = [
         { field: 'id', headerName: 'ID', width: 70 },
         { field: 'firstName', headerName: 'First name', width: 130 },
@@ -44,7 +44,7 @@ const Actualite = () => {
       ];
 
     return (
-        <div className='home'>
+        <div className={theme ? 'home':'home dark'}>
            <Sidebar/> 
            <div className="homeContainer">
             <Navbar/>

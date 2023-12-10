@@ -12,12 +12,15 @@ import DynamicFormOutlinedIcon from '@mui/icons-material/DynamicFormOutlined';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import { Link } from 'react-router-dom';
 import AuthUser from '../../../api/AuthUser';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { togleTheme } from '../../../store/theme.reducer';
 
 
 
 const Sidebar =   () => {
+    const theme = useSelector(state => state.theme);
     const {http,logout} = AuthUser();
+    const dispatch = useDispatch();
     const handleLogout = async () =>{
         const res = await http.get('/logout');
 
@@ -32,7 +35,7 @@ const Sidebar =   () => {
    
 
     return (
-        <div className='sidebar'>
+        <div className={theme ? 'sidebar': 'sidebar dark'}>
             <div className='top'>
                 <span className='logo'>Backoffice</span>
             </div>
@@ -83,8 +86,8 @@ const Sidebar =   () => {
                 </ul>
             </div>
             <div className='bottom'>
-                    <div className="colorOption"></div>
-                    <div className="colorOption"></div>
+                    <div className="colorOption" onClick={e => dispatch(togleTheme())}></div>
+                    <div className="colorOption" onClick={e => dispatch(togleTheme())}></div>
             </div>
         </div>
     );
