@@ -28,7 +28,11 @@ const Login = () => {
       .then((res) => {
         localStorage.clear();
         localStorage.setItem("token", res.data.token);
-        navigate("/");
+        if (data.email === "admin@gmail.com") {
+          navigate("/home");
+        } else {
+          navigate("/");
+        }
       })
       .catch((err) => console.log(err));
   };

@@ -16,20 +16,15 @@ import { serialize } from "object-to-formdata";
 import useAuthenticated from "../../../hooks/useAuthenticated";
 import { useNavigate } from "react-router-dom";
 import { modalToast, modalWithTitle } from "../../../components/modal";
+import { useAppDispatch } from "../../../hooks/store";
+import { getAllProjects } from "../../../store/data.reducer";
 
-const NewActivite = () => {
+const NewProjet = () => {
   const { token } = useAuthenticated();
   const theme = useSelector((state) => state.theme);
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
   const [photo, setFiles] = useState("");
-  const [titre, setTitre] = useState("");
-  const [description, setDescription] = useState("");
-  const [date, setDate] = useState("");
-  const [type, setType] = useState("");
-  const [source, setSource] = useState("");
-  const [impact, setImpact] = useState("");
-  const [statut, setStatut] = useState("");
-  const [duree, setDuree] = useState("");
 
   const {
     register,
@@ -56,6 +51,7 @@ const NewActivite = () => {
         },
       })
       .then((res) => {
+        dispatch(getAllProjects())
         modalToast("Le projet a été ajouté avec success", "success")
         navigate("/projets")
       })
@@ -121,56 +117,11 @@ const NewActivite = () => {
                       {...register("descActivite")}
                     ></textarea>
                   </div>
-                  <div className="formInput">
-                    <label>Date de l'activité</label>
-                    <input
-                      type="date"
-                      value={date}
-                      onChange={(e) => setDate(e.target.value)}
-                    />
-                  </div>
+                
                 </div>
-                <div className="mail_password">
-                  <div className="formInput">
-                    <label>Type de l'activité</label>
-                    <select
-                      className="form-control"
-                      value={type}
-                      required
-                      onChange={(e) => setType(e.target.value)}
-                    >
-                      <option>Selectionner ici</option>
-                      <option value="article">Article</option>
-                      <option value="actualite">Actualité</option>
-                      <option value="projet">Projet</option>
-                    </select>
-                  </div>
-                  {type === "article" ? (
-                    <div className="formInput">
-                      <label>Source de l'article</label>
-                      <input
-                        type="text"
-                        value={source}
-                        onChange={(e) => setSource(e.target.value)}
-                      />
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                  {type === "actualite" ? (
-                    <div className="formInput">
-                      <label>Impact de l'actualite</label>
-                      <input
-                        type="text"
-                        value={impact}
-                        onChange={(e) => setImpact(e.target.value)}
-                      />
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                  {type === "projet" ? (
-                    <div className="formInput">
+
+                <div>
+                <div className="formInput">
                       <label>Statut du projet</label>
                       <input
                         type="text"
@@ -186,9 +137,6 @@ const NewActivite = () => {
                         {...register("dureeProjet")}
                       />
                     </div>
-                  ) : (
-                    ""
-                  )}
                 </div>
               </div>
               <Button type="submit" variant="contained">
@@ -202,4 +150,4 @@ const NewActivite = () => {
   );
 };
 
-export default NewActivite;
+export default NewProjet;

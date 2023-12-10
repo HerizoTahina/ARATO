@@ -61,7 +61,7 @@ class Feedback
     private ?Projet $projet = null;
 
     #[ORM\ManyToOne(inversedBy: 'feedback')]
-    #[Groups(['feedback_read'])]
+    #[Groups(['feedback_read', 'feedback_write'])]
     private ?Utilisateur $utilisateur = null;
 
     public function getId(): ?int

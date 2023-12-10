@@ -22,6 +22,8 @@ import DetailsBlog from './pages/client/details-blog';
 import { togleTheme } from './store/theme.reducer';
 import Gouvernance from './pages/client/pages/Gouvernance';
 import NewActivite from './pages/admin/pages/NewActivite';
+import Projet from './pages/admin/pages/Projet';
+import NewProjet from './pages/admin/pages/NewProjet';
 
 
 
@@ -84,12 +86,12 @@ moment.locale('fr', {
 function App() {
   const dispatch = useAppDispatch()
 
-const getTheme = () => {
-  const valueTheme = localStorage.getItem("theme")
-  if(valueTheme === "dark"){
-   dispatch(togleTheme(false))
-  }else {dispatch(togleTheme(true))}
-}
+  const getTheme = () => {
+    const valueTheme = localStorage.getItem("theme")
+    if (valueTheme === "dark") {
+      dispatch(togleTheme(false))
+    } else { dispatch(togleTheme(true)) }
+  }
   useEffect(() => {
     dispatch(getAllProjects())
     dispatch(getAllUsers())
@@ -104,16 +106,19 @@ const getTheme = () => {
           <Route path='/' element={<HomeClient />} />
           <Route path='/details-project/:projectId' element={<Details />} />
           <Route path='/details-blog/:blogId' element={<DetailsBlog />} />
-          <Route path='/ressource' element={<Gouvernance/>}/>
-          <Route path='/newActivite' element={<NewActivite/>}/> 
+          <Route path='/ressource' element={<Gouvernance />} />
           {/*Admin*/}
 
           <Route path='/home' element={<Home />} />
           <Route path='/addNewAdmin' element={<NewAdmin />} />
-          <Route path='/register' element={<Register/>} />
-          <Route path='/login' element={<Login   />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
           <Route path='/users' element={<User />} />
           <Route path='/actualites' element={<Actualite />} />
+          <Route path='/newActivite' element={<NewActivite />} />
+          <Route path='/projets' element={<Projet />} />
+          <Route path='/newProjets' element={<NewProjet />} />
+
         </Routes>
       </Router>
     </React.Fragment>
