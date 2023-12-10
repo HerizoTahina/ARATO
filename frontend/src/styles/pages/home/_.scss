@@ -1,0 +1,85 @@
+.home-client {
+
+    .section {
+        width: 100%;
+        max-width: $max-width;
+        margin: auto;
+
+
+
+        &__title {
+            margin-top: 100px;
+            font-size: $f-xxl;
+            position: relative;
+
+            &::before {
+                content: ' ';
+                width: 50px;
+                height: 5px;
+                background-color: $primaryColor;
+                position: absolute;
+                bottom: -20px;
+            }
+        }
+
+        &__description {
+            width: 60%;
+            color: $expired-50;
+            margin-top: 20px;
+        }
+
+        &__lists {
+            margin-top: 50px;
+            display: grid;
+            column-gap: 80px;
+            row-gap: 20px;
+
+            &.projects {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            &.articles,
+            &.blogs {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            &.actualities {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+        }
+
+        &--particular {
+            max-width: inherit;
+            background-color: $primaryColor;
+            margin-top: 100px;
+            padding: 50px 0;
+
+            .content {
+                max-width: $max-width;
+                margin: auto;
+
+                &__title {
+                    text-align: center;
+                    color: white;
+                    margin-top: inherit;
+                }
+            }
+        }
+    }
+
+    .slogan {
+        max-width: $max-width;
+        margin: auto;
+        margin-top: 100px;
+        color: white;
+
+        &__item {
+            padding: 10px 20px;
+            @include flex(center, flex-start);
+            flex-direction: column;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+    }
+}

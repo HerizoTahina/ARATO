@@ -1,0 +1,17 @@
+.details {
+    max-width: $max-width;
+    margin: auto;
+    padding: 50px 0;
+
+    &__others {
+        @include flex(space-between);
+        column-gap: 100px;
+    }
+
+    &__feedbacks {
+        display: grid;
+        grid-template-columns: 60% 40%;
+        column-gap: 50px;
+        margin: 100px 0;
+    }
+}

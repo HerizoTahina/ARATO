@@ -1,0 +1,25 @@
+.detail {
+    &__content {
+        .date {
+            @include flex(flex-start, center);
+            column-gap: 20px;
+            font-size: $f-min;
+
+            &__item {
+                @include flex(flex-start, center);
+                column-gap: 3px;
+            }
+        }
+
+        .title {
+            font-size: $f-xl;
+            font-weight: 600;
+        }
+
+        .description {
+            font-size: $f-base;
+            font-weight: 400;
+            color: $expired-50;
+        }
+    }
+}

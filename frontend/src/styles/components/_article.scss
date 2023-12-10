@@ -1,0 +1,50 @@
+.article {
+    width: 100%;
+    box-shadow: $shadow;
+
+    &__header {
+        position: relative;
+
+        .image {
+            width: 100%;
+            height: 310px;
+            object-fit: cover;
+            border-top-right-radius: $r-base;
+            border-top-left-radius: $r-base;
+        }
+
+        .date {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background-color: white;
+            color: $primaryColor;
+            padding: 5px 10px;
+            border-radius: 50px;
+            @include flex(center, center);
+            font-size: $f-base;
+        }
+    }
+
+    &__body {
+        border-bottom-right-radius: $r-base;
+        border-bottom-left-radius: $r-base;
+        border: 1px solid $neutral-light-gray-50;
+        padding: 20px;
+        .title {
+            font-weight: 600;
+            font-size: $f-xl;
+        }
+
+        .description {
+            color: $expired-50;
+        }
+
+        .button {
+            background-color: $primaryColor;
+            border-radius: 20px;
+            color: white;
+            padding: 10px 20px;
+        }
+    }
+}

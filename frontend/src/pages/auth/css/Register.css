@@ -1,0 +1,58 @@
+.fond{
+    position: absolute;
+    -webkit-box-shadow:2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+    box-shadow: 2px 4px 10px 1px rgba(148, 148, 148, 0.47);
+    border-radius:10px;
+    height: 665px;
+    width: 500px;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.inscription{
+    position: absolute;
+    width: 300px;
+    margin-top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+
+
+}
+.inscription input{
+    margin: 15px 0px;
+}
+.inscription p{
+    margin-left: 20px;
+    margin-top: 10px;
+    color: gray;
+}
+.inscription span{
+    color: rgb(21, 157, 255);
+    
+}
+.profile_image{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+.profile_image img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.inscription_title{
+    display: flex;
+    justify-content: center;
+    background:#5BC94A;
+    border-radius: 10px 10px 0 0;
+    color: white;
+    height: 80px;
+}
+.inscription_title h3{
+    margin-top: 20px;
+}
+.inscrire_btn{
+    width: 300px;
+    border-radius: 15px;
+}

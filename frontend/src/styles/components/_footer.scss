@@ -1,0 +1,26 @@
+.footer-client {
+    margin-top: 100px;
+    background-color: #1E2833;
+    color: $expired-50;
+
+    .contents {
+        max-width: $max-width;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 60% 20% 20%;
+        column-gap: 20px;
+        padding-top: 50px;
+
+        .lists {
+            padding: 0;
+            &__item {
+                @include flex(flex-start)
+            }
+        }
+    }
+    .copyright-2 {
+        font-size: $f-min;
+        text-align: center;
+        padding-bottom: 50px;
+    }
+}

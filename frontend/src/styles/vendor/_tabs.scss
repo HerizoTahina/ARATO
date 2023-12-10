@@ -1,0 +1,24 @@
+.react-tabs {
+    &__tab {
+        border: none;
+        bottom: 0;
+
+        &--selected {
+            background: transparent;
+            color:  #38cb47c3;
+            font-size: $f-base;
+            font-weight: 600;
+        }
+
+        &:focus::after, &--selected::after {
+            content: '';
+            position: absolute;
+            height: 5px;
+            left: -4px;
+            right: -4px;
+            background-color: #38cb47c3;
+            bottom: -2px;
+          }
+          
+    }
+}

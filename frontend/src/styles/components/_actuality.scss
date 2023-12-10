@@ -1,0 +1,22 @@
+.actuality {
+    width: 100%;
+    height: 390px;
+    background-size: cover;
+    background-position: bottom;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    border-radius: $r-base;
+
+    &__title {
+        font-size: $f-md;
+        color: white;
+    }
+
+    &__description {
+        color: $neutral-light-gray-50;
+        font-weight: 400;
+        font-size: $f-base;
+    }
+}

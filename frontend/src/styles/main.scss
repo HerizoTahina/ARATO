@@ -1,0 +1,23 @@
+@import './abstract/variables',
+"./abstract/color",
+"./abstract/mixins";
+
+@import "./vendor/tabs";
+
+@import './base/reset';
+
+@import "./components/nav-bar",
+"./components/blog",
+"./components/project",
+"./components/article",
+"./components/actuality",
+'./components/detail',
+'./components/other',
+'./components/feedback',
+"./components/input",
+"./components/skeleton",
+'./components/footer';
+
+@import "./pages/home/",
+'./pages/home/banner',
+'./pages/details/';

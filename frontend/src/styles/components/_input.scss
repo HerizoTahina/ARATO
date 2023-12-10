@@ -1,0 +1,49 @@
+.input {
+    @include flex(flex-start);
+    flex-direction: column;
+    row-gap: 3px;
+
+    &__label {
+        text-align: left;
+        font-size: $f-base;
+    }
+
+    &__field {
+        width: 100%;
+        font-family: "Poppins";
+        border: 1px solid $grayColor;
+        border-radius: 5px;
+        padding: 8px 10px;
+        outline: none;
+        font-size: $f-min;
+        resize: none;
+    }
+
+    &__error {
+        text-align: left;
+        font-size: $f-min;
+        color: red;
+    }
+
+    &--file {
+
+        input {
+            display: none;
+        }
+
+        .file-field {
+            cursor: pointer;
+            @include flex(center, center);
+            border: 1px solid $grayColor;
+            border-radius: 3px;
+            height: 150px;
+            font-size: 50px;
+        }
+
+        .preview-image   {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+}

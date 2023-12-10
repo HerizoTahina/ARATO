@@ -1,0 +1,71 @@
+/* #label-mail{
+    margin-bottom: 10px;
+}
+#label-pass{
+    margin: 10px 0px 10px 0px;
+   
+}
+.header-modal{
+    color: white;
+    background:#38cb47a9;
+}
+.title-modal{
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+.btn-login{
+    margin-right: 30%;
+    transform: translateX(-50%);
+    color: white;
+    background: #38cb47c3;
+    height: 35px;
+    width: 90px;
+    color:white;
+    border:none;
+    border-radius: 10px;
+} */
+.logs{
+    background: rgb(9, 178, 178);
+    width: 100%;
+    height: 100%;
+}
+
+.all{
+    position: absolute;
+    -webkit-box-shadow:2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+    box-shadow: 2px 4px 10px 1px rgba(148, 148, 148, 0.47);
+    border-radius:10px;
+    height:300px;
+    width: 500px;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.champ_form{
+    position: absolute;
+    width: 300px;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.login input{
+    margin: 15px 0px;
+}
+.btn-create{
+    background: #38cb47c3;
+    height: 40px;
+    width: 300px;
+    color:white;
+    border:none;
+    border-radius: 10px;
+}
+
+.signIn{
+    background: rgb(41, 173, 255);
+    height: 40px;
+    width: 100%;
+    color:white;
+    margin-bottom: 15px;
+    border:none;
+    border-radius: 10px;
+}

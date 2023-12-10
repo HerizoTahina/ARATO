@@ -1,0 +1,88 @@
+.home{
+    display: flex;
+
+    .homeContainer{
+        position: relative;
+        flex: 6;
+        
+        .listeUsers{
+            position: absolute;
+            height:auto;
+            top: 50%;
+            left: 20%;
+            transform: translateY(-50%);
+            -webkit-box-shadow:2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+            box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+
+            h1{
+                font-size: 25px;
+                display: flex;
+                margin-top: 5px;
+                justify-content: center;
+                margin-bottom: 15px;
+            }
+            .add-btn{
+                background: rgb(5, 177, 245);
+                color:white;
+                border: none;
+                width: 100px;
+                height: 40px;
+                border-radius: 15px;
+
+                .Icons{
+                    font-style: 16px;
+                    margin-right: 5px;
+                }
+            }
+            .btn_search{
+                width: 100%;
+                margin-bottom: 20px;
+                display: flex;
+                padding: 10px;
+                align-items: center;
+                justify-content: space-between;
+
+
+                .search{
+                    border: 0.5px solid lightgray;
+                    
+                    input{
+                        border: none;
+                        outline: none;
+                        background:transparent;
+
+                        &::placeholder{
+                            font-size: 12px;
+                        }
+                    }
+                }
+
+            }
+           
+        }
+        .profilPict{ 
+            border-radius: 50%;
+        }
+        
+        .cellAction{
+          display: flex;
+          align-items: center;
+          gap: 15px;
+
+          .viewButton{
+            padding: 2px 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: darkblue;
+            border: 1px dotted rgba(0, 0, 139, 0.596);
+          }
+          .deleteButton{
+            padding: 2px 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: crimson;
+            border: 1px dotted rgba(220, 20, 60, 0.6);
+          }
+        }
+    }
+}
