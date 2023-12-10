@@ -8,15 +8,15 @@ use Doctrine\DBAL\Types\Types;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Delete;
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\ProjetRepository;
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
 use Doctrine\Common\Collections\Collection;
-use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
+use App\Repository\ProjetRepository;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 use App\Serializer\PatchedDateTimeNormalizer;
 
 #[Vich\Uploadable]
@@ -79,17 +79,18 @@ class Projet
     #[Groups(['projet_read' , 'utilisateur_read'])]
     private Collection $partenaireProjets;
 
-
-    #[ApiProperty(types: ['https://schema.org/contentUrl'])]
-    #[Groups(['projet_read'])]
-    public ?string $contentUrl = null;
-
+   
     #[Vich\UploadableField(mapping: "media_object", fileNameProperty: "filePath")]
     #[Groups(['projet_write'])]
     public ?File $file = null;
 
     #[ORM\Column(nullable: true)] 
+    #[Groups(['projet_read'])]
     public ?string $filePath = null;
+
+    #[ApiProperty(types: ['https://schema.org/contentUrl'])]
+    #[Groups(['utilisateur_read','projet_read' , 'publicationThematique_read' , 'publicationEvenement_read' , 'domaine_read' , 'commentaireEvenement_read' , 'commentaireThematique_read' , 'voirEvenement_read' , 'voirThematique_read' , 'reagirEvenement_read' , 'reagirThematique_read' , 'article_read' , 'projet_read' , 'partenaire_read' , 'partenaireProjet_read' , 'feedback_read'])]
+    public ?string $contentUrl = null;
 
     public function __construct()
     {
