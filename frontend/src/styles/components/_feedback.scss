@@ -1,3 +1,51 @@
 .feedback {
-    
+    &__icon {
+        background-color: $primaryColor;
+        width: 35px;
+        height: 35px;
+        font-size: $f-xl;
+        color: white;
+        @include flex(center, center);
+        border-radius: 50%;
+    }
+
+    &__content {
+        margin-left: 20px;
+        box-shadow: 4px 4px 30px 0px rgba(0, 0, 0, 0.06);
+        padding: 20px;
+        border-radius: $r-base;
+
+        .description {
+            color: $expired-50;
+            font-size: $f-md;
+        }
+
+        .user {
+            @include flex(flex-start, center);
+
+            &__image {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+            }
+
+            &__about {
+                font-size: $f-min;
+
+                p {
+                    margin: 0;
+
+                    &.name {
+                        font-weight: 600;
+                        font-size: $f-md;
+                    }
+
+                    &.role {
+                        font-size: $f-base;
+                        color: $grayColor;
+                    }
+                }
+            }
+        }
+    }
 }

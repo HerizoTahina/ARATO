@@ -1,19 +1,19 @@
 import { ReactSVG } from "react-svg";
-import { HTMLInputTypeAttribute } from 'react'
+import { ChangeEvent, HTMLInputTypeAttribute } from 'react'
 import { UseFormRegister, UseFormRegisterReturn } from "react-hook-form";
 import { AnyObject, AnyObjectSchema } from "yup";
 
 type InputProps = {
   id: string
   label: string
-  placeholder: string
+  placeholder?: string
   error?: string
-  preview?: string
-  values?: Array<{ text: string, value: string }>
+  preview?: string | null
+  values?: Array<{ text: string, value: string | number }>
   value?: string
-  onChange?: VoidFunction
+  onChange?: (e : ChangeEvent<HTMLInputElement>) => void
   register?: UseFormRegisterReturn
-  type: HTMLInputTypeAttribute
+  type?: HTMLInputTypeAttribute
 }
 
 function Input({ id, label, placeholder, register, error, type = "text" }: InputProps) {
@@ -43,7 +43,7 @@ function Textarea({ id, label, register, error, placeholder }: InputProps) {
       <textarea
         id={id}
         className="input__field"
-        rows={3}
+        rows={5}
         placeholder={placeholder}
         {...register}
       ></textarea>

@@ -9,18 +9,26 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Delete;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProjetRepository;
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use App\Serializer\PatchedDateTimeNormalizer;
 
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: ProjetRepository::class)]
 #[ApiResource(
     operations: [
         new Get(),
         new GetCollection(),
-        new Post(),
+        new Post(
+            inputFormats: ['multipart' => ['multipart/form-data']],
+            security: "is_granted('ROLE_USER')"
+        ),
         new Delete(),
         new Patch()
     ],
@@ -43,7 +51,7 @@ class Projet
     #[Groups(['projet_read' , 'projet_write' , 'utilisateur_read' , 'partenaireProjet_read' , 'feedback_read'])]
     private ?string $titreActvite = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 1500)]
     #[Groups(['projet_read' , 'projet_write' , 'utilisateur_read' , 'partenaireProjet_read' , 'feedback_read'])]
     private ?string $descActivite = null;
 
@@ -70,6 +78,18 @@ class Projet
     #[ORM\OneToMany(mappedBy: 'projet', targetEntity: PartenaireProjet::class)]
     #[Groups(['projet_read' , 'utilisateur_read'])]
     private Collection $partenaireProjets;
+
+
+    #[ApiProperty(types: ['https://schema.org/contentUrl'])]
+    #[Groups(['projet_read'])]
+    public ?string $contentUrl = null;
+
+    #[Vich\UploadableField(mapping: "media_object", fileNameProperty: "filePath")]
+    #[Groups(['projet_write'])]
+    public ?File $file = null;
+
+    #[ORM\Column(nullable: true)] 
+    public ?string $filePath = null;
 
     public function __construct()
     {

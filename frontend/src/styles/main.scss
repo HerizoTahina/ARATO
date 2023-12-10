@@ -2,7 +2,8 @@
 "./abstract/color",
 "./abstract/mixins";
 
-@import "./vendor/tabs";
+@import "./vendor/tabs",
+'./vendor/swal';
 
 @import './base/reset';
 
@@ -18,6 +19,9 @@
 "./components/skeleton",
 './components/footer';
 
+@import './contents/blog-form';
+
 @import "./pages/home/",
 './pages/home/banner',
-'./pages/details/';
+'./pages/details/',
+'./pages/details/feedback-form';

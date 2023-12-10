@@ -2,20 +2,23 @@
     @include flex(flex-start);
     flex-direction: column;
     row-gap: 3px;
+    width: 95%;
 
     &__label {
         text-align: left;
         font-size: $f-base;
+        text-transform: uppercase;
+        font-weight: 600;
     }
 
     &__field {
         width: 100%;
-        font-family: "Poppins";
+        font-family: "Jost";
         border: 1px solid $grayColor;
         border-radius: 5px;
         padding: 8px 10px;
         outline: none;
-        font-size: $f-min;
+        font-size: $f-base;
         resize: none;
     }
 
@@ -40,7 +43,7 @@
             font-size: 50px;
         }
 
-        .preview-image   {
+        .preview-image {
             height: 100%;
             width: 100%;
             object-fit: cover;

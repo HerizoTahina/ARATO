@@ -10,8 +10,14 @@
 
     &__feedbacks {
         display: grid;
-        grid-template-columns: 60% 40%;
+        grid-template-columns: 65% 35%;
         column-gap: 50px;
         margin: 100px 0;
+
+        .lists {
+            @include flex;
+            flex-direction: column;
+            row-gap: 50px;
+        }
     }
 }
