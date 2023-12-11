@@ -29,9 +29,9 @@ type IBlog = {
   voirEvenements: Array<IReaction>;
   commentaireEvenements: Array<ICommentary>;
   contentUrl: string;
-  nombreCommentaire: string;
-  nombreReaction: string;
-  nombreVue: string;
+  nombreCommentaire: number;
+  nombreReaction: number;
+  nombreVue: number;
 };
 
 export type {

@@ -8,23 +8,32 @@ use Doctrine\DBAL\Types\Types;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Delete;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
 use App\Repository\ActualiteRepository;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Doctrine\Common\Collections\ArrayCollection;
 
+
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: ActualiteRepository::class)]
 #[ApiResource(
     operations: [
         new Get(),
         new GetCollection(),
-        new Post(),
+        new Post(
+            inputFormats: ['multipart' => ['multipart/form-data']],
+            security: "is_granted('ROLE_USER')"
+        ),
         new Delete(),
         new Patch()
     ],
-    normalizationContext: [
-        'groups' => 'actualite_read'
-    ],
+    // normalizationContext: [
+    //     'groups' => 'actualite_read'
+    // ],
     denormalizationContext: [
         'groups' => 'actualite_write'
     ]
@@ -56,6 +65,17 @@ class Actualite
     #[ORM\ManyToOne(inversedBy: 'actualite')]
     #[Groups(['actualite_read'])]
     private ?Utilisateur $utilisateur = null;
+
+    #[ApiProperty(types: ['https://schema.org/contentUrl'])]
+    #[Groups(['utilisateur_read' ,'actualite_read', 'article_read','publicationThematique_read' , 'publicationEvenement_read' , 'domaine_read' , 'commentaireEvenement_read' , 'commentaireThematique_read' , 'voirEvenement_read' , 'voirThematique_read' , 'reagirEvenement_read' , 'reagirThematique_read' , 'article_read' , 'projet_read' , 'partenaire_read' , 'partenaireProjet_read' , 'feedback_read'])]
+    public ?string $contentUrl = null;
+
+    #[Vich\UploadableField(mapping: "media_object", fileNameProperty: "filePath")]
+    #[Groups(['actualite_write'])]
+    public ?File $file = null;
+
+    #[ORM\Column(nullable: true)] 
+    public ?string $filePath = null;
 
     public function getId(): ?int
     {

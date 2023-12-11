@@ -17,11 +17,14 @@ import { border, borderRadius } from '@mui/system';
 import Single from '../components/Single';
 import { Link } from 'react-router-dom';
 import { deleteUser } from '../../../store/auth.reducer';
+import { useAppSelector } from '../../../hooks/store';
+import { BASE_URL } from '../../../constants/env';
 
 
 const User = () => {
     const adminList = useSelector(state => state.users);
     const theme = useSelector(state => state.theme);
+    const {users} = useAppSelector((state) => state.data)
     const dispatch = useDispatch();
     const admin = adminList.admin;
   
@@ -58,22 +61,22 @@ const User = () => {
                             <TableRow>
                               <TableCell className='tableCell'>Picture</TableCell>
                               <TableCell className='tableCell'>Nom</TableCell>
-                              <TableCell className='tableCell'>Contact</TableCell>
+                              <TableCell className='tableCell'>ID</TableCell>
                               <TableCell className='tableCell'>Email</TableCell>
-                              <TableCell className='tableCell'>Role</TableCell>
+                              {/* <TableCell className='tableCell'>Role</TableCell> */}
                               <TableCell className='tableCell'>Action</TableCell>
                             </TableRow>
                           </TableHead>
                           <TableBody>
-                            {admin?.map((admin) => (
+                            {users?.map((user) => (
                               <TableRow
-                                key={admin.id}                              
+                                key={user.id}                              
                               >
-                                <TableCell><img className='profilPict' src={`http://127.0.0.1:8000/storage/${admin.picture}`} width='50px' height='50px'/></TableCell>
-                                <TableCell>{admin.name}</TableCell>
-                                <TableCell>{admin.contactUser}</TableCell>
-                                <TableCell>{admin.email}</TableCell>
-                                <TableCell>{admin.role}</TableCell>
+                                <TableCell><img className='profilPict' src={`${BASE_URL}${user.contentUrl}`} width='50px' height='50px'/></TableCell>
+                                <TableCell>{user.nom}</TableCell>
+                                <TableCell>{user.id}</TableCell>
+                                <TableCell>{user.email}</TableCell>
+                                {/* <TableCell>{ad}</TableCell> */}
                                 <TableCell className='cellAction'>
                                   <div className="viewButton" onClick={()=>setshowSingle(admin.id)}>Voir</div>
                                   <div className="deleteButton" onClick={()=>handleDelete(admin.id)}>Supprimer</div>

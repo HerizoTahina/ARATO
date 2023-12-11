@@ -17,6 +17,7 @@
 './components/feedback',
 "./components/input",
 "./components/skeleton",
+'./components/comment',
 './components/footer';
 
 @import './contents/blog-form';
@@ -24,4 +25,5 @@
 @import "./pages/home/",
 './pages/home/banner',
 './pages/details/',
+'./pages/details-blog/',
 './pages/details/feedback-form';

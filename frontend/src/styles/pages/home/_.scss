@@ -67,7 +67,7 @@
         }
     }
 
-    .slogan {
+    .partenaires {
         max-width: $max-width;
         margin: auto;
         margin-top: 100px;
@@ -80,6 +80,11 @@
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
+        }
+
+        img {
+            height: 60px;
+            object-fit: contain;
         }
     }
 }

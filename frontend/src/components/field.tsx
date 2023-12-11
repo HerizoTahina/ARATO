@@ -14,6 +14,7 @@ type InputProps = {
   onChange?: (e : ChangeEvent<HTMLInputElement>) => void
   register?: UseFormRegisterReturn
   type?: HTMLInputTypeAttribute
+  row?: number
 }
 
 function Input({ id, label, placeholder, register, error, type = "text" }: InputProps) {
@@ -34,7 +35,7 @@ function Input({ id, label, placeholder, register, error, type = "text" }: Input
   );
 }
 
-function Textarea({ id, label, register, error, placeholder }: InputProps) {
+function Textarea({ id, label, register, error, placeholder, row = 5 }: InputProps) {
   return (
     <div className="input">
       <label htmlFor={id} className="input__label">
@@ -43,7 +44,7 @@ function Textarea({ id, label, register, error, placeholder }: InputProps) {
       <textarea
         id={id}
         className="input__field"
-        rows={5}
+        rows={row}
         placeholder={placeholder}
         {...register}
       ></textarea>

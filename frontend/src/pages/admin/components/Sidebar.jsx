@@ -1,39 +1,32 @@
-import React, { useEffect } from 'react';
-import '../CSS/Sidebar.scss';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import LineWeightOutlinedIcon from '@mui/icons-material/LineWeightOutlined';
-import AccountTreeOutlinedIcon from '@mui/icons-material/AccountTreeOutlined';
-import RememberMeOutlinedIcon from '@mui/icons-material/RememberMeOutlined';
-import PeopleOutlineOutlinedIcon from '@mui/icons-material/PeopleOutlineOutlined';
-import DomainOutlinedIcon from '@mui/icons-material/DomainOutlined';
-import CorporateFareOutlinedIcon from '@mui/icons-material/CorporateFareOutlined';
-import DynamicFormOutlinedIcon from '@mui/icons-material/DynamicFormOutlined';
-import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
-import { Link } from 'react-router-dom';
-import AuthUser from '../../../api/AuthUser';
-import { useDispatch, useSelector } from 'react-redux';
-import { togleTheme } from '../../../store/theme.reducer';
-import '../style/dark.scss';
+import React, { useEffect } from "react";
+import "../CSS/Sidebar.scss";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import LineWeightOutlinedIcon from "@mui/icons-material/LineWeightOutlined";
+import AccountTreeOutlinedIcon from "@mui/icons-material/AccountTreeOutlined";
+import RememberMeOutlinedIcon from "@mui/icons-material/RememberMeOutlined";
+import PeopleOutlineOutlinedIcon from "@mui/icons-material/PeopleOutlineOutlined";
+import DomainOutlinedIcon from "@mui/icons-material/DomainOutlined";
+import CorporateFareOutlinedIcon from "@mui/icons-material/CorporateFareOutlined";
+import DynamicFormOutlinedIcon from "@mui/icons-material/DynamicFormOutlined";
+import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
+import { Link, useNavigate } from "react-router-dom";
+import AuthUser from "../../../api/AuthUser";
+import { useDispatch, useSelector } from "react-redux";
+import { togleTheme } from "../../../store/theme.reducer";
+import "../style/dark.scss";
 
+const Sidebar = () => {
+  const theme = useSelector((state) => state.theme);
+  const { http, logout } = AuthUser();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-const Sidebar =   () => {
-    const theme = useSelector(state => state.theme);
-    const {http,logout} = AuthUser();
-    const dispatch = useDispatch();
-    
-    const handleLogout = async () =>{
-        const res = await http.get('/logout');
+  const handleLogout = async () => {
+    localStorage.clear();
+    navigate("/");
+  };
 
-        if(res.status === 200){
-            sessionStorage.clear();
-            window.location.href = '/';
-        }
-        
-    }
-
-    
-   
 
     return (
         <div className={theme.isLight ? 'sidebar': 'sidebar dark'}>
@@ -99,7 +92,6 @@ const Sidebar =   () => {
                     }}></div>
             </div>
         </div>
-    );
 };
 
 export default Sidebar;

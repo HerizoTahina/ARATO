@@ -26,7 +26,7 @@ function Blog({ blog, isMin, isLarge, showActions } : BlogProps) {
   }
 
   return (
-    <Link to="/blogs" className={isMin ? "blog2 blog2--min" : "blog2"}>
+    <Link to={`/details-blog/${blog?.id}`} className={isMin ? "blog2 blog2--min" : "blog2"}>
       <div className="blog2__image">
         <img src={`${BASE_URL}${blog?.contentUrl}`} alt={`image-${blog?.id}`} />
       </div>

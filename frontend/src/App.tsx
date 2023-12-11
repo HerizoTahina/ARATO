@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomeClient from './pages/client/home';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/main.scss'
-import Details from './pages/client/details';
+import Details from './pages/client/details-project';
 import Home from './pages/admin/pages/Home';
 import NewAdmin from './pages/admin/pages/NewAdmin';
 import User from './pages/admin/pages/User';
@@ -16,12 +16,18 @@ import Login from './pages/auth/Login';
 import { useDispatch } from 'react-redux'
 import axios from 'axios';
 import { BASE_URL } from './constants/env';
-import { getAllProjects, getAllUsers, setProjects } from './store/data.reducer';
+import { getAbout, getAllActualites, getAllArticles, getAllBlogs, getAllDomaines, getAllProjects, getAllUsers, setProjects } from './store/data.reducer';
 import { useAppDispatch } from './hooks/store';
+import DetailsBlog from './pages/client/details-blog';
 import { togleTheme } from './store/theme.reducer';
-import NewActivite from './pages/admin/pages/NewActivite';
 import Gouvernance from './pages/client/pages/Gouvernance';
 import Ong from './pages/admin/pages/Ong';
+import NewActivite from './pages/admin/pages/NewActivite';
+import Projet from './pages/admin/pages/Projet';
+import NewProjet from './pages/admin/pages/NewProjet';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 
 moment.locale('fr', {
@@ -83,15 +89,20 @@ moment.locale('fr', {
 function App() {
   const dispatch = useAppDispatch()
 
-const getTheme = () => {
-  const valueTheme = localStorage.getItem("theme")
-  if(valueTheme === "dark"){
-   dispatch(togleTheme(false))
-  }else {dispatch(togleTheme(true))}
-}
+  const getTheme = () => {
+    const valueTheme = localStorage.getItem("theme")
+    if (valueTheme === "dark") {
+      dispatch(togleTheme(false))
+    } else { dispatch(togleTheme(true)) }
+  }
   useEffect(() => {
     dispatch(getAllProjects())
     dispatch(getAllUsers())
+    dispatch(getAllBlogs())
+    dispatch(getAllArticles())
+    dispatch(getAllActualites())
+    dispatch(getAllDomaines())
+    dispatch(getAbout())
     getTheme()
   }, [])
 
@@ -101,17 +112,20 @@ const getTheme = () => {
         <Routes>
           <Route path='/' element={<HomeClient />} />
           <Route path='/details-project/:projectId' element={<Details />} />
-          <Route path='/ressource' element={<Gouvernance/>}/>
+          <Route path='/details-blog/:blogId' element={<DetailsBlog />} />
+          <Route path='/ressource' element={<Gouvernance />} />
           {/*Admin*/}
 
           <Route path='/home' element={<Home />} />
           <Route path='/addNewAdmin' element={<NewAdmin />} />
-          <Route path='/newActivite' element={<NewActivite/>}/>
-          <Route path='/register' element={<Register/>} />
-          <Route path='/login' element={<Login   />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
           <Route path='/users' element={<User />} />
           <Route path='/actualites' element={<Actualite />} />
           <Route path='/about' element={<Ong/>} />
+          <Route path='/newActivite' element={<NewActivite />} />
+          <Route path='/projets' element={<Projet />} />
+          <Route path='/newProjets' element={<NewProjet />} />
         </Routes>
       </Router>
     </React.Fragment>
