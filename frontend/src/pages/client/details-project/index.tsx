@@ -4,7 +4,7 @@ import Detail from './detail'
 import FeedbackForm from './feedback-form'
 import Feedback from '../../../components/feedback'
 import Footer from '../../../components/footer'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useAppSelector } from '../../../hooks/store'
 import { IProject } from '../../../types/IProject'
 import { BASE_URL } from '../../../constants/env'
@@ -31,12 +31,13 @@ function Details({ }: Props) {
                 <NavBar />
             </header>
             <div className="details">
-                <Detail project={projectSelected}/>
+                <Detail project={projectSelected} />
                 <div className='details__others'>
-                    {projects.filter(projet => projet.id.toString() !== projectId).slice(0,3).map((other, index) => {
-                        return <div key={index} className='other'>
-                            <img src={`${BASE_URL}/media/${other.filePath}`} style={{width : '100%', height: '100%', objectFit : 'cover'}}/>
-                        </div>
+                    {projects.filter(projet => projet.id.toString() !== projectId).slice(0, 3).map((other, index) => {
+                        return <Link to={`/details-project/${other.id}`} key={index}>
+                            <div className='other'>
+                                <img src={`${BASE_URL}/media/${other.filePath}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            </div></Link>
                     })}
                 </div>
 

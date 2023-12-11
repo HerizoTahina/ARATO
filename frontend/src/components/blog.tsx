@@ -42,7 +42,7 @@ function Blog({ blog, isMin, isLarge, showActions } : BlogProps) {
 
         <div className="reaction">
           <ReactSVG src="/svg/heart.svg" className="reaction__logo" />
-          <span className="reaction__number">25 réactions</span>
+          <span className="reaction__number">{blog?.nombreReaction} réactions</span>
         </div>
         <p className="description">{blog?.description}</p>
         <button className="show-more">
@@ -53,12 +53,12 @@ function Blog({ blog, isMin, isLarge, showActions } : BlogProps) {
           <div className="actions">
             <div className="actions__item">
               <ReactSVG src="/svg/heart.svg" className="actions__icon" />
-              <p>25</p>
+              <p>{blog?.nombreReaction}</p>
             </div>
 
             <div onClick={toggleShowComment} className="actions__item">
               <ReactSVG src="/svg/comment.svg" className="actions__icon" />
-              <p>5</p>
+              <p>{blog?.nombreCommentaire}</p>
             </div>
           </div>
         ) : null}

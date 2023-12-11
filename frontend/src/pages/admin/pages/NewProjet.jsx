@@ -64,7 +64,7 @@ const NewProjet = () => {
       <div className="newContainer">
         <Navbar />
         <div className="top">
-          <h1>Ajout d'un nouveau activité</h1>
+          <h1>Ajout d'un nouveau projet</h1>
         </div>
         <div className="bottom">
           <div className="left">
@@ -106,7 +106,7 @@ const NewProjet = () => {
                       //   value={titre}
                       //   onChange={(e) => setTitre(e.target.value)}
                       {...register("titreActvite")}
-                      placeholder="Titre de l'activité"
+                      placeholder="Titre du projet"
                     />
                   </div>
                   <div className="formInput">

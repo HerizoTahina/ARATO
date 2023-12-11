@@ -5,19 +5,25 @@ import useAuthenticated from "../../../hooks/useAuthenticated";
 import axios from "axios";
 import { BASE_URL } from "../../../constants/env";
 import { Textarea } from "../../../components/field";
+import { useAppDispatch } from "../../../hooks/store";
+import { getAllBlogs } from "../../../store/data.reducer";
 
 function CommentForm({ blogId }: { blogId?: number }) {
+    const dispatch = useAppDispatch()
     const {
         register,
         formState: { isValid, errors },
+        reset,
         getValues,
+        handleSubmit,
     } = useForm({
         mode: "onChange",
         resolver: yupResolver(commentFormSchema),
     });
     const { token } = useAuthenticated();
 
-    function newComment() {
+    function newComment(e: { comment: string }) {
+
         const content = {
             contenuCommentaire: getValues("comment"),
             publicationEvenement: `/api/publication_evenements/${blogId}`,
@@ -31,13 +37,14 @@ function CommentForm({ blogId }: { blogId?: number }) {
                 },
             })
             .then((res) => {
-
+                reset()
+                dispatch(getAllBlogs())
             })
             .catch((err) => console.log(err));
     }
 
     return (
-        <form>
+        <form onSubmit={handleSubmit(newComment)}>
             <Textarea
                 id="comment"
                 label="Commentaire"
@@ -46,7 +53,7 @@ function CommentForm({ blogId }: { blogId?: number }) {
                 placeholder="Mon commentaire..."
                 row={3}
             />
-            <button className="comment-btn" onClick={newComment} disabled={!isValid}>
+            <button className="comment-btn" type="submit" /*onClick={newComment}*/ disabled={!isValid}>
                 Envoyer
             </button>
         </form>

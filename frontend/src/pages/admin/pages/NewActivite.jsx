@@ -68,7 +68,7 @@ const NewActivite = () => {
       <div className="newContainer">
         <Navbar />
         <div className="top">
-          <h1>Ajout d'un nouveau activité</h1>
+          <h1>Ajout d'un nouveau projet</h1>
         </div>
         <div className="bottom">
           <div className="left">

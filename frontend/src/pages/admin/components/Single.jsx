@@ -1,58 +1,66 @@
-import React, { useState } from 'react';
-import Navbar from './Navbar';
-import Sidebar from './Sidebar';
-import '../CSS/Single.scss';
-import Charts from './Charts';
+import React, { useEffect, useState } from "react";
+import Navbar from "./Navbar";
+import Sidebar from "./Sidebar";
+import "../CSS/Single.scss";
+import Charts from "./Charts";
+import { useAppSelector } from "../../../hooks/store";
+import { BASE_URL } from "../../../constants/env";
 
+const Single = ({ Id, admin, setshowSingle }) => {
+  const { users } = useAppSelector((state) => state.data);
+  const [userSelected, setUserSelected] = useState(null);
 
-const Single = ({Id,admin,setshowSingle}) => {
-    const selected = admin.filter((e)=> e.id === Id);
-    const [picture,setPicture] = useState(selected[0].picture);
-    const [nom,setNom] = useState(selected[0].name);
-    const [contact,setContact] = useState(selected[0].contactUser);
-    const [email,setEmail] = useState(selected[0].email);
+  useEffect(() => {
+    if (Id) {
+      const userSearch = users.find((user) => user.id === Id);
+      if (userSearch) {
+        setUserSelected(userSelected);
+      }
+    }
+  }, [Id]);
 
-    return (
-        <div className="singleContainer">
-            <div className='single'>
-                    <div className="top">
-                        <div className="left">
-                            <div className="editButton">Edit</div>
-                            <h1 className="title">Information</h1>
-                            <div className="item">
-                                <img 
-                                    src={`http://127.0.0.1:8000/storage/${picture}`} 
-                                    alt='' 
-                                    className='itemImg'
-                                />
-                                <div className='details'>
-                                    <h1 className="itemTitle">A propos de l'utilisateur {nom}</h1>
-                                    <div className="detailItem">
-                                        <span className="itemKey">Nom :</span>
-                                        <span className="itemValue">{nom}</span>
-                                    </div>
-                                    <div className="detailItem">
-                                        <span className="itemKey">Contact :</span>
-                                        <span className="itemValue">{contact}</span>
-                                    </div>
-                                    <div className="detailItem">
-                                        <span className="itemKey">Email:</span>
-                                        <span className="itemValue">{email}</span>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            <button className='btn-retour' onClick={()=>setshowSingle('')}>Annuler</button>
-                        </div>
-                        <div className="right">
-                            <Charts aspect={2 / 1} />
-                        </div> 
-                        
-                    </div>
+  return (
+    <div className="singleContainer">
+      <div className="single">
+        <div className="top">
+          <div className="left">
+            <div className="editButton">Edit</div>
+            <h1 className="title">Information</h1>
+            <div className="item">
+              <img
+                src={`${BASE_URL}/${userSelected?.contentUrl}`}
+                alt=""
+                className="itemImg"
+              />
+              <div className="details">
+                <h1 className="itemTitle">
+                  A propos de l'utilisateur {userSelected?.nom}
+                </h1>
+                <div className="detailItem">
+                  <span className="itemKey">Nom :</span>
+                  <span className="itemValue">{userSelected?.nom}</span>
+                </div>
+                {/* <div className="detailItem">
+                  <span className="itemKey">Contact :</span>
+                  <span className="itemValue">{contact}</span>
+                </div> */}
+                <div className="detailItem">
+                  <span className="itemKey">Email:</span>
+                  <span className="itemValue">{userSelected?.email}</span>
+                </div>
+              </div>
             </div>
-           
+            <button className="btn-retour" onClick={() => setshowSingle("")}>
+              Annuler
+            </button>
+          </div>
+          <div className="right">
+            <Charts aspect={2 / 1} />
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Single;

@@ -36,6 +36,13 @@
         .right {
             @include flex(flex-end , center);
 
+            .user {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
             .btn-auth {
                 text-transform: uppercase;
                 font-size: $f-base;

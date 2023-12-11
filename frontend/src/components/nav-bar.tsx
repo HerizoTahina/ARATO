@@ -3,17 +3,19 @@ import { modalWithTitle } from './modal';
 import BlogForm from '../contents/blog-form';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import {Nav, Navbar,Container, NavDropdown} from 'react-bootstrap';
+import { Nav, Navbar, Container, NavDropdown } from 'react-bootstrap';
 import { useAppSelector } from '../hooks/store';
 import { BASE_URL } from '../constants/env';
 import { Provider } from 'react-redux';
 import { allStore } from '../store';
+import useAuthenticated from '../hooks/useAuthenticated';
 
 type Props = {}
 
 function NavBar({ }: Props) {
     const navigate = useNavigate()
-    const {about} = useAppSelector(state => state.data)
+    const { about } = useAppSelector(state => state.data)
+    const { currentUser } = useAuthenticated()
 
     function openBlog() {
         modalWithTitle("Nouveau blog", <Provider store={allStore}><BlogForm /></Provider>)
@@ -26,6 +28,13 @@ function NavBar({ }: Props) {
     function redirectHomePage() {
         navigate('/')
     }
+
+
+    const handleLogout = async () => {
+        localStorage.clear();
+        navigate("/");
+    };
+
 
     return (
         <nav className='nav-bar'>
@@ -41,52 +50,52 @@ function NavBar({ }: Props) {
                     {about?.filePath ? <img src={`${BASE_URL}/media/${about.filePath}`} alt='logo-tandavanala' className='logo' onClick={redirectHomePage} /> : <img src='/logoTandavanala.png' alt='logo-tandavanala' className='logo' onClick={redirectHomePage} />}
                 </div>
                 <div>
-                <Navbar expand='lg' className='navigation'>
-                    <Container className='navigations'>
-                
-                <Navbar.Toggle aria-controls="navbarScroll" />
-                <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav
-                     className="me-auto my-2 my-lg-0"
-                     style={{maxHeight: '100px'}}
-                     navbarScroll
-                >
-                   
-                    
-                    <Nav.Link as={Link} to='/' className='espace'>Accueil</Nav.Link>
-                    <NavDropdown title="Axes stratégiques" className='espace'  id="collapsible-nav-dropdown">
-                        
-                            <NavDropdown.Item className='dropDown'>
-                                <Link to='/ressource' id='navig'>Gouvernances des ressources naturelle</Link>
-                            </NavDropdown.Item>
-                            <NavDropdown.Item className='dropDown'>
-                                <Link to='/securiteAlimentaire' id='navig'>Securité alimentaire</Link>
-                            </NavDropdown.Item>
-                            <NavDropdown.Item className='dropDown'>
-                                <Link to='/changementClimatique' id='navig'>Changement climatique</Link>
-                            </NavDropdown.Item>
-                            <NavDropdown.Item className='dropDown'>
-                                <Link to='/infoEducComm' id='navig'>Information, Education et communication</Link>
-                            </NavDropdown.Item>
-                       
-                       
-                    </NavDropdown>
-                    <NavDropdown title="Le corridor forrestier"  className='espace' id="collapsible-nav-dropdown">
-                        <NavDropdown.Item className='dropDown'>
-                            <Link to='carateristique' id='navig'>Caractéristiques et role</Link>
-                        </NavDropdown.Item>
-                        <NavDropdown.Item className='dropDown'>
-                           <Link to='enjeux' id='navig'>Les enjeux</Link>
-                        </NavDropdown.Item>
-                        <NavDropdown.Item className='dropDown'>
-                            <Link to='perspective' id='navig'>Perspective</Link>
-                        </NavDropdown.Item>
-                    </NavDropdown>
-                    <Nav.Link className='espace'>Vidéo et photo</Nav.Link>
-                </Nav>
-                    
-                </Navbar.Collapse>
-                {/* {token ? <div className='items'>
+                    <Navbar expand='lg' className='navigation'>
+                        <Container className='navigations'>
+
+                            <Navbar.Toggle aria-controls="navbarScroll" />
+                            <Navbar.Collapse id="responsive-navbar-nav">
+                                <Nav
+                                    className="me-auto my-2 my-lg-0"
+                                    style={{ maxHeight: '100px' }}
+                                    navbarScroll
+                                >
+
+
+                                    <Nav.Link as={Link} to='/' className='espace'>Accueil</Nav.Link>
+                                    <NavDropdown title="Axes stratégiques" className='espace' id="collapsible-nav-dropdown">
+
+                                        <NavDropdown.Item className='dropDown'>
+                                            <Link to='/ressource' id='navig'>Gouvernances des ressources naturelle</Link>
+                                        </NavDropdown.Item>
+                                        <NavDropdown.Item className='dropDown'>
+                                            <Link to='/securiteAlimentaire' id='navig'>Securité alimentaire</Link>
+                                        </NavDropdown.Item>
+                                        <NavDropdown.Item className='dropDown'>
+                                            <Link to='/changementClimatique' id='navig'>Changement climatique</Link>
+                                        </NavDropdown.Item>
+                                        <NavDropdown.Item className='dropDown'>
+                                            <Link to='/infoEducComm' id='navig'>Information, Education et communication</Link>
+                                        </NavDropdown.Item>
+
+
+                                    </NavDropdown>
+                                    <NavDropdown title="Le corridor forrestier" className='espace' id="collapsible-nav-dropdown">
+                                        <NavDropdown.Item className='dropDown'>
+                                            <Link to='carateristique' id='navig'>Caractéristiques et role</Link>
+                                        </NavDropdown.Item>
+                                        <NavDropdown.Item className='dropDown'>
+                                            <Link to='enjeux' id='navig'>Les enjeux</Link>
+                                        </NavDropdown.Item>
+                                        <NavDropdown.Item className='dropDown'>
+                                            <Link to='perspective' id='navig'>Perspective</Link>
+                                        </NavDropdown.Item>
+                                    </NavDropdown>
+                                    <Nav.Link className='espace'>Vidéo et photo</Nav.Link>
+                                </Nav>
+
+                            </Navbar.Collapse>
+                            {/* {token ? <div className='items'>
                     <div className="profile_nom">
                         <p>{user.name}<KeyboardArrowDownOutlinedIcon/></p>
                     </div>
@@ -96,15 +105,24 @@ function NavBar({ }: Props) {
                 </div> : ''}
 
                 {!token ? <Link to='/login'><button className='btn-connecter'>Se connecter</button></Link> : <button className='btn-deconnecter' onClick={handleLogout}>Déconnexion</button>} */}
-                
-            </Container>
-    </Navbar>
+
+                        </Container>
+                    </Navbar>
                 </div>
                 <div className='right'>
-                    <div>
+                    {currentUser ? <>
+                        <div>
+                            <img src={`${BASE_URL}${currentUser.contentUrl}`} alt='user' className='user' />
+                        </div>
+
+                        <div>
+                            <button onClick={handleLogout} className='btn-auth'>Se deconnecter</button>
+                        </div>
+                    </> : <div>
                         <button onClick={redirectLoginPage} className='btn-auth'>Se connecter</button>
-                    </div>
-                    <button onClick={openBlog} className='btn-pub'>Nouveau blog</button>
+                    </div>}
+
+                    {currentUser ? <button onClick={openBlog} className='btn-pub'>Nouveau blog</button> : null}
 
                 </div>
             </div>

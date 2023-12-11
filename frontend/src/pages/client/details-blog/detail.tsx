@@ -16,6 +16,7 @@ function Detail({ blog }: Props) {
     const { currentUser, token } = useAuthenticated()
     const [myLikeId, setMyLikeId] = useState<number | null>(null)
     const [numberReaction, setNumberReaction] = useState<number>(0)
+    const [numberComment, setNumberComment] = useState<number>(0)
     const [isLiked, setIsLiked] = useState<boolean>(false)
 
 
@@ -41,6 +42,7 @@ function Detail({ blog }: Props) {
     useEffect(() => {
         if (blog) {
             setNumberReaction(blog.nombreReaction)
+            setNumberComment(blog.nombreCommentaire)
         }
     }, [blog])
 
@@ -91,7 +93,7 @@ function Detail({ blog }: Props) {
 
                         <div className="actions__item">
                             <ReactSVG src="/svg/comment.svg" className="actions__icon" />
-                            <p>5</p>
+                            <p>{numberComment}</p>
                         </div>
                     </div>
 
