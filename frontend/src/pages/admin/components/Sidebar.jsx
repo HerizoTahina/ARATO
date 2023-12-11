@@ -27,77 +27,71 @@ const Sidebar = () => {
     navigate("/");
   };
 
-  return (
-    <div className={theme.isLight ? "sidebar" : "sidebar dark"}>
-      <div className="top">
-        <span className="logo">Backoffice</span>
-      </div>
-      <hr />
-      <div className="center">
-        <ul>
-          <p className="title">MAIN</p>
-          <Link to="/home">
-            <li>
-              <DashboardIcon className="Icon" />
-              <span>Tableau de bord</span>
-            </li>
-          </Link>
-          <p className="title">LISTS</p>
-          <Link to="/users">
-            <li>
-              <PersonOutlineOutlinedIcon className="Icon" />
-              <span>Utilisateur</span>
-            </li>
-          </Link>
-          <Link to="/actualites">
-            <li>
-              <LineWeightOutlinedIcon className="Icon" />
-              <span>Actualités</span>
-            </li>
-          </Link>
-          <Link to="/projets">
-            <li>
-              <AccountTreeOutlinedIcon className="Icon" />
-              <span>Projets</span>
-            </li>
-          </Link>
 
-          <li>
-            <DomainOutlinedIcon className="Icon" />
-            <span>Domaine d'intervention</span>
-          </li>
-          <li>
-            <CorporateFareOutlinedIcon className="Icon" />
-            <span>ONG</span>
-          </li>
-          <li>
-            <DynamicFormOutlinedIcon className="Icon" />
-            <span>Axes stratégiques</span>
-          </li>
-          <li>
-            <ExitToAppOutlinedIcon className="Icon" />
-            <span onClick={handleLogout}>Déconnexion</span>
-          </li>
-        </ul>
-      </div>
-      <div className="bottom">
-        <div
-          className="colorOption"
-          onClick={(e) => {
-            dispatch(togleTheme(true));
-            localStorage.setItem("theme", "light");
-          }}
-        ></div>
-        <div
-          className="colorOption"
-          onClick={(e) => {
-            dispatch(togleTheme(false));
-            localStorage.setItem("theme", "dark");
-          }}
-        ></div>
-      </div>
-    </div>
-  );
+    return (
+        <div className={theme.isLight ? 'sidebar': 'sidebar dark'}>
+            <div className='top'>
+                <span className='logo'>Backoffice</span>
+            </div>
+            <hr />
+            <div className='center'>
+                <ul>
+                    <p className="title">MAIN</p>
+                    <Link to='/home'>
+                        <li>
+                            <DashboardIcon className='Icon'/>
+                            <span>Tableau de bord</span>
+                        </li>
+                    </Link>
+                    <p className="title">LISTS</p>
+                    <Link to='/users'>
+                        <li>
+                            <PersonOutlineOutlinedIcon className='Icon'/>
+                            <span>Utilisateur</span>
+                        </li>
+                    </Link>
+                    <Link to='/actualites'>
+                        <li>
+                            <LineWeightOutlinedIcon className='Icon'/>
+                            <span>Actualités</span>
+                        </li>
+                    </Link>
+                    <li>
+                        <AccountTreeOutlinedIcon className='Icon'/>
+                        <span>Projets</span>
+                    </li>
+                   
+                    <li>
+                        <DomainOutlinedIcon className='Icon'/>
+                        <span>Domaine d'intervention</span>
+                    </li>
+                    <Link to='/about'>
+                        <li>
+                            <CorporateFareOutlinedIcon className='Icon'/>
+                            <span>ONG</span>
+                        </li>
+                    </Link>
+                    <li>
+                        <DynamicFormOutlinedIcon className='Icon'/>
+                        <span>Axes stratégiques</span>
+                    </li>
+                    <li>
+                        <ExitToAppOutlinedIcon className='Icon'/>
+                        <span onClick={handleLogout}>Déconnexion</span>
+                    </li>
+                </ul>
+            </div>
+            <div className='bottom'>
+                    <div className="colorOption" onClick={e => {
+                        dispatch(togleTheme(true));
+                        localStorage.setItem("theme","light")
+                        }}></div>
+                    <div className="colorOption" onClick={e => {
+                        dispatch(togleTheme(false));
+                        localStorage.setItem("theme","dark")
+                    }}></div>
+            </div>
+        </div>
 };
 
 export default Sidebar;

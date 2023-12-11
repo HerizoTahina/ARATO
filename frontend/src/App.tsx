@@ -21,11 +21,13 @@ import { useAppDispatch } from './hooks/store';
 import DetailsBlog from './pages/client/details-blog';
 import { togleTheme } from './store/theme.reducer';
 import Gouvernance from './pages/client/pages/Gouvernance';
+import Ong from './pages/admin/pages/Ong';
 import NewActivite from './pages/admin/pages/NewActivite';
 import Projet from './pages/admin/pages/Projet';
 import NewProjet from './pages/admin/pages/NewProjet';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
 
 
 moment.locale('fr', {
@@ -120,10 +122,10 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/users' element={<User />} />
           <Route path='/actualites' element={<Actualite />} />
+          <Route path='/about' element={<Ong/>} />
           <Route path='/newActivite' element={<NewActivite />} />
           <Route path='/projets' element={<Projet />} />
           <Route path='/newProjets' element={<NewProjet />} />
-
         </Routes>
       </Router>
     </React.Fragment>
