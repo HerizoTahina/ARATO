@@ -72,10 +72,12 @@ const Sidebar =   () => {
                         <DomainOutlinedIcon className='Icon'/>
                         <span>Domaine d'intervention</span>
                     </li>
-                    <li>
-                        <CorporateFareOutlinedIcon className='Icon'/>
-                        <span>ONG</span>
-                    </li>
+                    <Link to='/about'>
+                        <li>
+                            <CorporateFareOutlinedIcon className='Icon'/>
+                            <span>ONG</span>
+                        </li>
+                    </Link>
                     <li>
                         <DynamicFormOutlinedIcon className='Icon'/>
                         <span>Axes stratégiques</span>

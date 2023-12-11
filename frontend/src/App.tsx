@@ -21,6 +21,7 @@ import { useAppDispatch } from './hooks/store';
 import { togleTheme } from './store/theme.reducer';
 import NewActivite from './pages/admin/pages/NewActivite';
 import Gouvernance from './pages/client/pages/Gouvernance';
+import Ong from './pages/admin/pages/Ong';
 
 
 moment.locale('fr', {
@@ -110,6 +111,7 @@ const getTheme = () => {
           <Route path='/login' element={<Login   />} />
           <Route path='/users' element={<User />} />
           <Route path='/actualites' element={<Actualite />} />
+          <Route path='/about' element={<Ong/>} />
         </Routes>
       </Router>
     </React.Fragment>
