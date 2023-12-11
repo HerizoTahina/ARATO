@@ -4,14 +4,19 @@ import BlogForm from '../contents/blog-form';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import {Nav, Navbar,Container, NavDropdown} from 'react-bootstrap';
+import { useAppSelector } from '../hooks/store';
+import { BASE_URL } from '../constants/env';
+import { Provider } from 'react-redux';
+import { allStore } from '../store';
 
 type Props = {}
 
 function NavBar({ }: Props) {
     const navigate = useNavigate()
+    const {about} = useAppSelector(state => state.data)
 
     function openBlog() {
-        modalWithTitle("Nouveau blog", <BlogForm />)
+        modalWithTitle("Nouveau blog", <Provider store={allStore}><BlogForm /></Provider>)
     }
 
     function redirectLoginPage() {
@@ -33,7 +38,7 @@ function NavBar({ }: Props) {
 
             <div className='nav-bar__content'>
                 <div className='left'>
-                    <img src='/logoTandavanala.png' alt='logo-tandavanala' className='logo' onClick={redirectHomePage} />
+                    {about?.filePath ? <img src={`${BASE_URL}/media/${about.filePath}`} alt='logo-tandavanala' className='logo' onClick={redirectHomePage} /> : <img src='/logoTandavanala.png' alt='logo-tandavanala' className='logo' onClick={redirectHomePage} />}
                 </div>
                 <div>
                 <Navbar expand='lg' className='navigation'>

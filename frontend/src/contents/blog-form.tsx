@@ -5,26 +5,30 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { serialize } from 'object-to-formdata';
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { modalToast } from "../components/modal";
 import useAuthenticated from "../hooks/useAuthenticated";
 import useLoader from "../hooks/useLoader";
 import { IBlog } from "../types/IBlog";
-import {blogFormSchema,IBlogForm} from '../schema/blog-schema'
+import { blogFormSchema, IBlogForm } from '../schema/blog-schema'
 import { BASE_URL } from "../constants/env";
 import Loader from "../components/loader";
 import { wait } from "../helpers/wait";
+import { useAppDispatch, useAppSelector } from "../hooks/store";
+import { getAllBlogs } from "../store/data.reducer";
 
-const domaines = [{ text: "Electronique", value: 1 }];
-const places = [
-  { text: "Antananarivo", value: "Antananarivo" },
-  { text: "Fianarantsoa", value: "Fianarantsoa" },
+const places = [{ text: "Fianarantsoa", value: "Fianarantsoa" },
+{ text: "Antananarivo", value: "Antananarivo" },
+{ text: "Fianarantsoa", value: "Fianarantsoa" },
 ];
 
 function BlogForm() {
   const { token } = useAuthenticated()
   const { loading, toggleLoading } = useLoader()
+  const { domaines } = useAppSelector(state => state.data)
   const [previewImage, setPreviewImage] = useState<null | string>(null)
+  const [domaineDefined, setDomaineDefined] = useState<Array<{ text: string, value: string }>>([])
+  const dispatch = useAppDispatch()
 
   const {
     formState: { errors },
@@ -38,7 +42,7 @@ function BlogForm() {
 
   function handleClickSubmit(data: IBlogForm) {
     toggleLoading()
-    let copyData : IBlogForm = data;
+    let copyData: IBlogForm = data;
     copyData.domaine = `/api/domaines/${data.domaine}`;
     const copyDataToFormData = serialize(copyData)
     console.log(BASE_URL)
@@ -48,6 +52,7 @@ function BlogForm() {
         "Content-Type": "multipart/form-data"
       }
     }).then(async (res) => {
+      dispatch(getAllBlogs())
       await wait()
       toggleLoading()
       Swal.close()
@@ -56,6 +61,16 @@ function BlogForm() {
       .catch(err => toggleLoading())
   }
 
+
+  useEffect(() => {
+    if (domaines) {
+      const domaineCopy: Array<{ text: string, value: string }> = []
+      domaines.forEach((domaine) => {
+        domaineCopy.push({ text: domaine.titreDomaine, value: domaine.id.toString() })
+      })
+      setDomaineDefined(domaineCopy)
+    }
+  }, [domaines])
 
   return (
     <form className="blog-form" onSubmit={handleSubmit(handleClickSubmit)}>
@@ -76,7 +91,7 @@ function BlogForm() {
       <Select
         id="domaine"
         label="Domaine"
-        values={domaines}
+        values={domaineDefined}
         register={register("domaine")}
         placeholder="domain"
         error={errors.domaine?.message}

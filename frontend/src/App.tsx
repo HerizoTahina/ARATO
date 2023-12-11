@@ -16,7 +16,7 @@ import Login from './pages/auth/Login';
 import { useDispatch } from 'react-redux'
 import axios from 'axios';
 import { BASE_URL } from './constants/env';
-import { getAllActualites, getAllArticles, getAllBlogs, getAllProjects, getAllUsers, setProjects } from './store/data.reducer';
+import { getAbout, getAllActualites, getAllArticles, getAllBlogs, getAllDomaines, getAllProjects, getAllUsers, setProjects } from './store/data.reducer';
 import { useAppDispatch } from './hooks/store';
 import DetailsBlog from './pages/client/details-blog';
 import { togleTheme } from './store/theme.reducer';
@@ -99,6 +99,8 @@ function App() {
     dispatch(getAllBlogs())
     dispatch(getAllArticles())
     dispatch(getAllActualites())
+    dispatch(getAllDomaines())
+    dispatch(getAbout())
     getTheme()
   }, [])
 

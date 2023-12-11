@@ -1,7 +1,10 @@
 import React from "react";
 import { ReactSVG } from "react-svg";
+import { useAppSelector } from "../hooks/store";
 
 function Footer() {
+  const {about} = useAppSelector(state => state.data)
+
   return (
     <footer className="footer-client">
       <div className="contents">
@@ -30,13 +33,13 @@ function Footer() {
           <h3 className="title">Contacts</h3>
           <ul className="lists">
             <li className="lists__item">
-              <ReactSVG src="/svg/facebook.svg" /> Tandavanala
+              <ReactSVG src="/svg/facebook.svg" /> {about?.fb}
             </li>
             <li className="lists__item">
-              <ReactSVG src="/svg/youtube-icon.svg" /> Tandavanala.mg
+              <ReactSVG src="/svg/youtube-icon.svg" /> {about?.Youtube}
             </li>
             <li className="lists__item">
-              <ReactSVG src="/svg/whatsapp-icon.svg" /> +261 34 00 000 00
+              <ReactSVG src="/svg/whatsapp-icon.svg" /> {about?.Telephone}
             </li>
           </ul>
         </section>
