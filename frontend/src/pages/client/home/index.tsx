@@ -12,12 +12,12 @@ import Banner from "./banner";
 import { useSelector } from "react-redux";
 import { useAppSelector } from "../../../hooks/store";
 import { IProject } from "../../../types/IProject";
+import { Partenariat } from "./partenariat";
 
 
 function HomeClient() {
-  const { projects, blogs } = useAppSelector(state => state.data)
+  const { projects, blogs, articles, actualites } = useAppSelector(state => state.data)
   const [loading, setLoading] = useState(false);
-  const [listsBlogs, setListsBlogs] = useState([]);
 
   console.log(blogs)
 
@@ -40,8 +40,8 @@ function HomeClient() {
         <section className="section">
           <h1 className="section__title">Nos articles</h1>
           <div className="section__lists articles">
-            {[...new Array(3)].map((article, index) => (
-              <Article key={index} />
+            {articles.slice(0, 3).map((article, index) => (
+              <Article key={index} article={article} />
             ))}
           </div>
         </section>
@@ -50,8 +50,8 @@ function HomeClient() {
           <div className="content">
             <h1 className="section__title content__title">Actualité</h1>
             <div className="section__lists actualities">
-              {[...new Array(4)].map((article, index) => (
-                <Actuality key={index} />
+              {actualites.slice(0.4).map((actualite, index) => (
+                <Actuality key={index} actualite={actualite} />
               ))}
             </div>
           </div>
@@ -60,9 +60,7 @@ function HomeClient() {
         <section className="section">
           <h1 className="section__title">Blog</h1>
           <p className="section__description">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos
-            quae, incidunt ab a autem qui, expedita earum aspernatur ut at amet
-            sequi ipsam nemo repellat optio assumenda vitae doloribus error?
+            Publicaion régulièrement du contenu, permettant aux lecteurs d'explorer des sujets variés et d'interagir à travers des commentaires.
           </p>
           <div className="section__lists blogs">
             {loading
@@ -75,8 +73,9 @@ function HomeClient() {
           </div>
         </section>
 
-        <div className="slogan">
-          <div
+        <section className="section">
+          <h1 className="section__title">Partenaires</h1>
+          {/* <div
             className="slogan__item"
             style={{
               backgroundImage:
@@ -85,8 +84,10 @@ function HomeClient() {
           >
             <h2 className="title">Tandavanala est</h2>
             <p className="description">Une entreprise</p>
-          </div>
-        </div>
+          </div> */}
+
+          <Partenariat />
+        </section>
       </div>
       <Footer />
     </>

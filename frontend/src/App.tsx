@@ -16,7 +16,7 @@ import Login from './pages/auth/Login';
 import { useDispatch } from 'react-redux'
 import axios from 'axios';
 import { BASE_URL } from './constants/env';
-import { getAllBlogs, getAllProjects, getAllUsers, setProjects } from './store/data.reducer';
+import { getAllActualites, getAllArticles, getAllBlogs, getAllProjects, getAllUsers, setProjects } from './store/data.reducer';
 import { useAppDispatch } from './hooks/store';
 import DetailsBlog from './pages/client/details-blog';
 import { togleTheme } from './store/theme.reducer';
@@ -24,7 +24,8 @@ import Gouvernance from './pages/client/pages/Gouvernance';
 import NewActivite from './pages/admin/pages/NewActivite';
 import Projet from './pages/admin/pages/Projet';
 import NewProjet from './pages/admin/pages/NewProjet';
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 
 moment.locale('fr', {
@@ -96,6 +97,8 @@ function App() {
     dispatch(getAllProjects())
     dispatch(getAllUsers())
     dispatch(getAllBlogs())
+    dispatch(getAllArticles())
+    dispatch(getAllActualites())
     getTheme()
   }, [])
 

@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20231210103700 extends AbstractMigration
+final class Version20231211000823 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -21,7 +21,7 @@ final class Version20231210103700 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE actualite (id INT AUTO_INCREMENT NOT NULL, utilisateur_id INT DEFAULT NULL, titre_activite VARCHAR(255) NOT NULL, desc_activite VARCHAR(255) NOT NULL, date_creation DATE NOT NULL, impact_actualite VARCHAR(255) NOT NULL, INDEX IDX_54928197FB88E14F (utilisateur_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE article (id INT AUTO_INCREMENT NOT NULL, utilisateur_id INT DEFAULT NULL, titre_activite VARCHAR(255) NOT NULL, desc_activite VARCHAR(255) NOT NULL, date_creation DATE NOT NULL, article_source VARCHAR(255) NOT NULL, INDEX IDX_23A0E66FB88E14F (utilisateur_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE article (id INT AUTO_INCREMENT NOT NULL, utilisateur_id INT DEFAULT NULL, titre_activite VARCHAR(255) NOT NULL, desc_activite VARCHAR(255) NOT NULL, date_creation DATE NOT NULL, article_source VARCHAR(255) NOT NULL, file_path VARCHAR(255) DEFAULT NULL, INDEX IDX_23A0E66FB88E14F (utilisateur_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE axe_strategique (id INT AUTO_INCREMENT NOT NULL, utilisateur_id INT DEFAULT NULL, titre_axe VARCHAR(255) NOT NULL, objectif_axe VARCHAR(255) NOT NULL, point_strategique VARCHAR(255) DEFAULT NULL, resultat_attendus LONGTEXT DEFAULT NULL COMMENT \'(DC2Type:array)\', INDEX IDX_E5E4A5CFFB88E14F (utilisateur_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE commentaire_evenement (id INT AUTO_INCREMENT NOT NULL, utilisateur_id INT DEFAULT NULL, publication_evenement_id INT DEFAULT NULL, contenu_commentaire VARCHAR(255) NOT NULL, date_creation_commentaire DATE NOT NULL, INDEX IDX_84B1E729FB88E14F (utilisateur_id), INDEX IDX_84B1E7294E0336D6 (publication_evenement_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE commentaire_thematique (id INT AUTO_INCREMENT NOT NULL, utilisateur_id INT DEFAULT NULL, publication_thematique_id INT DEFAULT NULL, contenu_commentaire VARCHAR(255) NOT NULL, date_creation_commentaire DATE NOT NULL, INDEX IDX_82BCE728FB88E14F (utilisateur_id), INDEX IDX_82BCE728AC2AB389 (publication_thematique_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');

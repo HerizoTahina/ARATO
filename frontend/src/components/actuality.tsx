@@ -1,15 +1,19 @@
 import React from "react";
+import { IActualite } from "../types/IActualite";
+import { BASE_URL } from "../constants/env";
 
-function Actuality() {
+type ActualityProps = {
+  actualite: IActualite
+}
+
+function Actuality({ actualite }: ActualityProps) {
   return (
-    <div className="actuality" style={{ backgroundImage: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.1)),url('/actualite.jpeg')" }}>
+    <div className="actuality" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.1)),url('${BASE_URL}/media/${actualite.filePath}')` }}>
       <h2 className="actuality__title">
-        Campagne de sensibilisation aux alentours du Corridor Forestier de
-        Vohibato et Lalangiana
+        {actualite.TitreActivite}
       </h2>
       <p className="actuality__description">
-        En partenariat avec l’Alliance Voahary Gasy, l’Association des
-        journalistes Aro Voahary,
+        {actualite.descActivite}
       </p>
     </div>
   );
